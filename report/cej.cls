@@ -46,8 +46,8 @@
   \def\cej@type{}
 }
 \DeclareOption{CEJM}{
-  \def\cej@journalname{Central European Journal of {\bfseries Mathematics}}
-  \def\cej@shortjournalname{Cent. Eur. J. Math.}
+  \def\cej@journalname{Predictive Analytics}
+  \def\cej@shortjournalname{New York University}
   \def\cej@type{CEJM}
   \cej@twocolumnsfalse
 }
@@ -116,7 +116,7 @@
     \vbox to0pt{\vskip-5mm \fontsize{7pt}{8.4pt}\selectfont    
       \cej@shortjournalname%
       \ifcej@printpagerange\;\*\;\thepage-\cej@lastpage\fi\\
-       Author version%
+       %Author version%
     }
     \vskip-\baselineskip
     \vskip4mm
@@ -223,9 +223,8 @@
 		          \fontsize{8pt}{10pt}\selectfont
 		            $\null$\rlap{\textbf{Keywords:}}\kern\cej@tempdimen%
 		            \selectfont\cej@keywords\\[1mm]%
-		            \copyright\;
-		            \selectfont
-		            Versita Warsaw and Springer-Verlag Berlin Heidelberg.% All rights reserved.
+		            %\copyright\;
+		            %%Versita Warsaw and Springer-Verlag Berlin Heidelberg.% All rights reserved.
 		          \vskip1mm
 		        \fi%
             \vskip1.6mm
