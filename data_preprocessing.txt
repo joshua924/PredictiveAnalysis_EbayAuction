@@ -1,0 +1,2 @@
+remove ebayID(0), sellerName(), category(), PersonID(), endDay(), hitCount(), 
+auctionAverageHitCount(), SellerSaleAvgPriceRatio(), sellerAverage(), AuctionHitCountAvgRatio(), bestOffer(), itemListedCount(), SellerAuctionSaleCount()
