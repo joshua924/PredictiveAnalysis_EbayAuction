@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{listings,color,relsize}
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+\linespread{1.5}
+
+
+
+\begin{document}
+\textbf{Entropy based filter}
+\begin{verbatim}
+                        attr_importance
+StartingBidPercent         0.142113054
+SellerClosePercent         0.191431639
+StartingBid                0.071807352
+AvgPrice                   0.462173422
+ItemAuctionSellPercent     0.002012785
+SellerItemAvg              0.042062863
+IsHOF                      0.000000000
+AuctionCount               0.152471109
+AuctionSaleCount           0.098943728
+SellerAuctionCount         0.128577549
+AuctionMedianPrice         0.176666755
+\end{verbatim}
+
+First 7 features:\\
+"AvgPrice"           "SellerClosePercent" "AuctionMedianPrice" "AuctionCount"      "StartingBidPercent" "SellerAuctionCount" "AuctionSaleCount"  
+\\
+
+\textbf{Chi-square based filter}
+\begin{verbatim}
+                         attr_importance
+StartingBidPercent          0.26196726
+SellerClosePercent          0.29670612
+StartingBid                 0.18784361
+AvgPrice                    0.47460475
+ItemAuctionSellPercent      0.06509426
+SellerItemAvg               0.14541187
+IsHOF                       0.00000000
+AuctionCount                0.26282938
+AuctionSaleCount            0.20983745
+SellerAuctionCount          0.24177050
+AuctionMedianPrice          0.29014051
+\end{verbatim}
+
+First 7 features:\\
+"AvgPrice"           "SellerClosePercent" "AuctionMedianPrice" "AuctionCount"      "StartingBidPercent" "SellerAuctionCount" "AuctionSaleCount"   
+\\
+
+\textbf{Correlation based filter}
+\begin{verbatim}
+                        attr_importance
+StartingBidPercent          0.05002078
+SellerClosePercent          0.62856687
+StartingBid                 0.16766258
+AvgPrice                    0.10793493
+ItemAuctionSellPercent      0.08816751
+SellerItemAvg               0.07423485
+IsHOF                       0.01689967
+AuctionCount                0.11040403
+AuctionSaleCount            0.16330465
+SellerAuctionCount          0.07086579
+AuctionMedianPrice          0.18235711
+\end{verbatim}
+
+First 7 features:\\
+"SellerClosePercent"     "AuctionMedianPrice"     "StartingBid" "AuctionSaleCount"       "AuctionCount"           "AvgPrice"   "ItemAuctionSellPercent"  
+\\
+\end{document}
