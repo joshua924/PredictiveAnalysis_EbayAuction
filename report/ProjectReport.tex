@@ -2,6 +2,8 @@
 \documentclass[CEJM,PDF]{cej} % use PDF command to enable PDFLaTeX driver
 \usepackage{layout}
 \usepackage{booktabs}
+\usepackage{latexsym}
+\renewcommand*\rmdefault{ppl}
 \graphicspath{ {images/} }
 
 
@@ -29,7 +31,7 @@
 \abstract{Online auctions are one of the most popular methods to buy and sell items on the internet. With more than 100 million active users globally, eBay is the world’s largest online marketplace, where anyone can buy and sell anything. In order to successfully selling products on ebay, a reasonable starting price does not only determine whether the product will be sold or not but also affects the profit you can make from the transaction. In this project, we use the historical auction data collected from eBay from April 2013 to the first week of May 2013 which contains information about 296,048 successful and unsuccessful auctions. Different statistical models and machine learning algorithms will be utilized to study online auction patterns and predict the starting price that maximizes profits. Furthermore, we will compare the performance of different methods and summarize the pros and cons in different situations.
 }
 
-\keywords{Ebay auction \*\ Predictive Analytics \*\ Data Mining}
+\keywords{Ebay Auction \*\ Predictive Analytics \*\ Data Mining}
 
 %\msc{XXXXX, YYYYY}
 
@@ -45,8 +47,8 @@ EBay is the world’s largest marketplace for sports autographs, the vast majori
 
 Data Preparation is an crucial and time-consuming part of our data mining project. It involves selecting data to include, cleaning data to improve data quality, constructing new data that may be required, integrating multiple data sets, and formatting data. We first preprocessed the downloaded data sets using shell scripts. To gain more experience on feature selection, we have performed the selection procedure on all three tools used in the class, RapidMiner, Weka and R. With different algorithms and parameters, we get slightly different but generally consistent results. 
 
-\subsection*{Data Pre-processing}
-Before any data can be used for later feature reduction and selection, we preprocessed our data sets. Here the tool we use is shell scripts. Initially, the raw data consists of training sets and test sets. Since we intend to do cross-validation on the whole data set, we merge all the separate data sets as one complete sets. Then we carefully go through all the data attributes and deleted all that obviously contain meaningless or irrelevant information to our analysis, such as ebayID, sellerName, etc. In addition, some attributes with ambiguous meanings are also discarded.
+\subsection*{Data Preprocessing}
+Before any data can be used for later feature reduction and selection, we preprocessed our data sets. Here the tool we use is shell scripts. Initially, the raw data consists of training sets and test sets. Since we intend to do cross-validation on the whole data set, we merge all the separate data sets as one complete sets. Then we carefully go through all the data attributes and deleted all that obviously contain meaningless or irrelevant information to our analysis, such as ebayID, sellerName, etc. In addition, some attributes with ambiguous meanings are also discarded. 
 
 
 \subsection{Feature Selection Using Weka}
@@ -59,7 +61,7 @@ First, we perform feature selection in Weka. To enable Weka to better handle the
 }
 
 
-Two algorithms are used in Weka: Information Gain and Feature Subset Selection. We first used Information Gain Algortihm and the result is below. According to the information gain results we have, if we set the entropy threshold to 0.95, we will need the top 8 features.
+Two algorithms are used in Weka: Information Gain and Feature Subset Selection. We first used Information Gain Algortihm and the result is as below. According to the information gain results we have, if we set the entropy threshold to 0.95, we will need the top 8 features.
 
 {\centering
     \vspace{3 mm}
@@ -78,11 +80,10 @@ Using the number of features obtained above, we set the number of features to 8 
 
 
 \subsection{Feature Selection Using R}
-The caret R package provides tools automatically report on the relevance and importance of attributes in your data and even select the most important features for you. Here we perform three different feature selection method on our dataset.
+The caret R package provides tools automatically report on the relevance and importance of attributes in your data and even select the most important features for you. Here we perform three different feature selection method on our dataset. We use three kinds of filters to get a better sense of what attributes are more important, and we have the results below.\\
 
 \textbf{Entropy based filter}
 \begin{verbatim}
-
                     		 attr_importance 		 rank
 StartingBidPercent         0.142113054                     5
 SellerClosePercent         0.191431639                     2
@@ -96,8 +97,7 @@ AuctionSaleCount           0.098943728                     7
 SellerAuctionCount         0.128577549                     6
 AuctionMedianPrice         0.176666755                     3
 \end{verbatim}
-
-
+\mbox{}\\
 \textbf{Chi-square based filter}
 \begin{verbatim}
            attr_importance rank
@@ -113,8 +113,7 @@ AuctionSaleCount            0.20983745                 7
 SellerAuctionCount          0.24177050                 6
 AuctionMedianPrice          0.29014051                 3
 \end{verbatim}
-
-
+\mbox{}\\
 \textbf{Correlation based filter}
 \begin{verbatim}
                attr_importance 	rank
@@ -130,7 +129,6 @@ AuctionSaleCount            0.16330465                 4
 SellerAuctionCount          0.07086579                 9
 AuctionMedianPrice          0.18235711                 2
 \end{verbatim}
-
 
 As a result, we summarize all the three different methods and and compute average rank for each attribute. The result is presented in table \ref{r-rank}.
 
@@ -158,6 +156,51 @@ IsHOF                  & 11                   & 11                      & 11    
 
 
 \subsection{Feature Selection Using RapidMiner}
+First we choose a feature selection method from RapidMiner. Here we use Forward Selection. Forward selection operator selects the most relevant attributes of the given ExampleSet through a highly efficient implementation of the forward selection scheme. 
+
+Forward selections uses wrapper method to select attributes. Basically, it starts with an empty attribute set. It them add one attribute to run the model and measures the performance. The process keep adding attributes to the model to see if there is performance gain. Depending on the parameter set, it will terminate until there is no performance improvement or no significant performance improvement. Here we also use cross-validation to measure the performance of the model as well as the current attributes set the operator. 
+
+For predicting the whether the given item can be sold or not, we use several classification algorithms, including: Naive Bayes, Decision Tree, Random Forest, Rule Induction, Neural net, Logistic Regression, Support Vector Machine. We will consider efficiency and prediction accuracy for each model to decide which one to adopt. 
+
+\subsubsection{Naive Bayes modeling}
+{\centering
+    A. The attribute weight
+    \vspace{3 mm}
+    \includegraphics[scale=0.6]{rm-nb-aw.png}
+    \par
+}
+
+
+{\centering
+    B. The prediction model result and auc curve
+    \vspace{3 mm}
+    \includegraphics[scale=0.6]{rm-nb-perf.png}
+    \vspace{3 mm}
+    \includegraphics[scale=0.6]{rm-nb-auc.png}
+    \par
+}
+
+\subsubsection{Decision Tree modeling}
+{\centering
+    A. The attribute weight
+    \vspace{3 mm}
+    \includegraphics[scale=0.6]{rm-dec-aw.png}
+    \par
+}
+
+
+{\centering
+    B. The prediction model result and auc curve
+    \vspace{3 mm}
+    \includegraphics[scale=0.6]{rm-dec-perf.png}
+    \vspace{3 mm}
+    \includegraphics[scale=0.6]{rm-dec-auc.png}
+    \par
+}
+
+\subsection{Other Methods}
+The other methods including Random Forest, Rule Induction, Neural net, Logistic Regression, Support Vector Machine takes a very long time to finish (more than one hour). Since the dataset we are using is not very large, we consider them not suitable for our problem.
+
 
 \section{Team Members Responsibilities and Plan for the Next Phase}
 
@@ -169,7 +212,7 @@ Right now, all group members are actively participate in the project. An approxi
 \item Zhaoyin Zhu: data preprocessing, feature selection in R
 \end{itemize}
 
-For the next phase,we intend to build different models to make predictions.
+For the next phase,we intend to build different models to make predictions. We plan to apply various statistical machine learning model and use corss-validation to test each model. Also, we would study some economic aspects of the auction theory to help us build the model.
 
 
 
