@@ -78,59 +78,16 @@ Using the number of features obtained above, we set the number of features to 8 
 }
 
 
-
 \subsection{Feature Selection Using R}
-The caret R package provides tools automatically report on the relevance and importance of attributes in your data and even select the most important features for you. Here we perform three different feature selection method on our dataset. We use three kinds of filters to get a better sense of what attributes are more important, and we have the results below.\\
-
-\textbf{Entropy based filter}
-\begin{verbatim}
-                    		 attr_importance 		 rank
-StartingBidPercent         0.142113054                     5
-SellerClosePercent         0.191431639                     2
-StartingBid                0.071807352                     8
-AvgPrice                   0.462173422                     1
-ItemAuctionSellPercent     0.002012785                    10
-SellerItemAvg              0.042062863                     9
-IsHOF                      0.000000000                    11
-AuctionCount               0.152471109                     4
-AuctionSaleCount           0.098943728                     7
-SellerAuctionCount         0.128577549                     6
-AuctionMedianPrice         0.176666755                     3
-\end{verbatim}
+The caret R package provides tools automatically report on the relevance and importance of attributes in your data and even select the most important features for you. Here we perform three different feature selection method on our dataset, namely entropy based filter, Chi-square based filter and Correlation based filter. We apply all three filters to get a better sense of what attributes are more important, and we have the results below.\\
+\begin{center}
+\includegraphics[scale=0.5]{entropy.png}\\
 \mbox{}\\
-\textbf{Chi-square based filter}
-\begin{verbatim}
-           attr_importance rank
-StartingBidPercent          0.26196726                 5
-SellerClosePercent          0.29670612                 2
-StartingBid                 0.18784361                 8
-AvgPrice                    0.47460475                 1
-ItemAuctionSellPercent      0.06509426                10
-SellerItemAvg               0.14541187                 9
-IsHOF                       0.00000000                11
-AuctionCount                0.26282938                 4
-AuctionSaleCount            0.20983745                 7
-SellerAuctionCount          0.24177050                 6
-AuctionMedianPrice          0.29014051                 3
-\end{verbatim}
+\includegraphics[scale=0.5]{chi-square.png}\\
 \mbox{}\\
-\textbf{Correlation based filter}
-\begin{verbatim}
-               attr_importance 	rank
-StartingBidPercent          0.05002078                10
-SellerClosePercent          0.62856687                 1
-StartingBid                 0.16766258                 3
-AvgPrice                    0.10793493                 6
-ItemAuctionSellPercent      0.08816751                 7
-SellerItemAvg               0.07423485                 8
-IsHOF                       0.01689967                11
-AuctionCount                0.11040403                 5
-AuctionSaleCount            0.16330465                 4
-SellerAuctionCount          0.07086579                 9
-AuctionMedianPrice          0.18235711                 2
-\end{verbatim}
-
-As a result, we summarize all the three different methods and and compute average rank for each attribute. The result is presented in table \ref{r-rank}.
+\includegraphics[scale=0.5]{correlation.png}\\
+\end{center}
+As a result, we summarize all the three different methods and compute average rank for each attribute. The result is presented in table \ref{r-rank}.
 
 
 \begin{table}[h]
@@ -154,13 +111,12 @@ IsHOF                  & 11                   & 11                      & 11    
 \end{tabular}
 \end{table}
 
-
 \subsection{Feature Selection Using RapidMiner}
 First we choose a feature selection method from RapidMiner. Here we use Forward Selection. Forward selection operator selects the most relevant attributes of the given ExampleSet through a highly efficient implementation of the forward selection scheme. 
 
-Forward selections uses wrapper method to select attributes. Basically, it starts with an empty attribute set. It them add one attribute to run the model and measures the performance. The process keep adding attributes to the model to see if there is performance gain. Depending on the parameter set, it will terminate until there is no performance improvement or no significant performance improvement. Here we also use cross-validation to measure the performance of the model as well as the current attributes set the operator. 
+Forward selections uses wrapper method to select attributes. Basically, it starts with an empty attribute set. It them add one attribute to run the model and measures the performance. The process keep adding attributes to the model to see if there is performance gain. Depending on the parameter set, it will terminate until there is no performance improvement or no significant performance improvement. Here we also use cross-validation to measure the performance of the model as well as the current attributes set the operator.
 
-For predicting the whether the given item can be sold or not, we use several classification algorithms, including: Naive Bayes, Decision Tree, Random Forest, Rule Induction, Neural net, Logistic Regression, Support Vector Machine. We will consider efficiency and prediction accuracy for each model to decide which one to adopt. 
+For predicting the whether the given item can be sold or not, we use several classification algorithms, including: Naive Bayes, Decision Tree, Random Forest, Rule Induction, Neural net, Logistic Regression, Support Vector Machine. We will consider efficiency and prediction accuracy for each model to decide which one to adopt.
 
 \subsubsection{Naive Bayes modeling}
 {\centering
@@ -198,8 +154,23 @@ For predicting the whether the given item can be sold or not, we use several cla
     \par
 }
 
-\subsection{Other Methods}
+\subsection{Other Trials}
 The other methods including Random Forest, Rule Induction, Neural net, Logistic Regression, Support Vector Machine takes a very long time to finish (more than one hour). Since the dataset we are using is not very large, we consider them not suitable for our problem.
+
+
+\subsection{Final Feature Selection}
+After integrating all results from 3 different tools, we narrowed the features down to these list.\\
+\begin{center}
+StartingBidPercent\\
+SellerClosePercent\\
+StartingBid\\
+AvgPrice\\
+AuctionCount\\
+AuctionSaleCount\\
+SellerAuctionCount\\
+AuctionMedianPrice\\
+\end{center}
+And from here on, unless specified otherwise, we are using the reduced dataset with only these features.
 
 
 \section{Team Members Responsibilities and Plan for the Next Phase}
@@ -212,16 +183,29 @@ Right now, all group members are actively participate in the project. An approxi
 \item Zhaoyin Zhu: data preprocessing, feature selection in R
 \end{itemize}
 
-For the next phase,we intend to build different models to make predictions. We plan to apply various statistical machine learning model and use corss-validation to test each model. Also, we would study some economic aspects of the auction theory to help us build the model.
+For the next phase,we intend to build different models to make predictions. We plan to apply various statistical machine learning model and use cross-validation to test each model. Also, we would study some economic aspects of the auction theory to help us build the model.
 
 
 
-\section{Modeling (ToDo)}
+\section{Modeling}
 
 Modeling involves selecting suitable modeling techniques, generating test designs to validate the model, building predictive models and assessing these models.
 
 
 A predictive model is a mathematical function that predicts the value of some output variables based on the mapping between input variables. Historical data is used to train the model to arrive at the most suitable modeling technique. For example, a predictive model might predict the risk of developing a certain disease based on patient details. Some commonly used modeling techniques are as follows: Regression analysis that analyzes the relationship between the response or dependent variable and a set of independent or predictor variables. Decision trees that help explore possible outcomes for various options. Cluster analysis that groups objects into clusters to look for patterns. Association techniques that discover relationships between variables in large databases.
+
+
+\subsection{Modeling for Sale / No Sale}
+In all three tools here, we tried to use different type of classification algorithms to 
+
+\subsubsection{Modeling in Weka}
+
+
+\subsubsection{Modeling in RapidMiner}
+
+
+\subsubsection{Modeling in R}
+We ran Logistic Regression algorithm from the famous ``Generalized Linear Model" package in R to start with,
 
 \section{Evaluation (ToDo)}
 Evaluation involves evaluating the results against the business success criteria defined at the beginning of the project.
