@@ -9,3 +9,6 @@ Figure 01_bayse_performance shows the performance for naive bayse.
 05_decision_tree_roc shows ROC curve for decision tree.
 05_decision_tree_tree shows the gain ratio based decision tree of depth 20 for the prediction model. 
 
+06_decision_tree_gain_ratio_depth_5 shows decision tree of depth 5 using gain ratio. 
+06_decition_tree_performance_depth5_gain_ratio shows performance for decision tree of depth 5 using gain ratio. Compare to decision tree of depth 20, we can see higher tree depth yields better prediction performance.
+
