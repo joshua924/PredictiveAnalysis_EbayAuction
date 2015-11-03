@@ -1,0 +1,11 @@
+We tried different classification models in RapidMinier to predict whether a give item can be sold or not. Models we tried include Naive Bayse, Random Forest, KNN, Decision Tree, Logistic Regression, Nural Net. We present Naive Bayse, Random Forest, and Decision Tree results here. We use cross validation for testing the performance. 
+Figure 01_bayse_performance shows the performance for naive bayse. 
+02_bayse_ROC shows the ROC curve for naive bayse.
+
+03_Randforest_performance shows performance for random forest.
+
+05_decision_tree shows performance for decision tree for depth 20 using gain ratio.
+05_decision_tree_information_gain shows performance for decision tree for depth using information gain. We can see that information gain based decision tree yields higher accuracy. 
+05_decision_tree_roc shows ROC curve for decision tree.
+05_decision_tree_tree shows the gain ratio based decision tree of depth 20 for the prediction model. 
+
