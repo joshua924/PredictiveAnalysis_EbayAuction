@@ -9,7 +9,7 @@
 
 \title{Predicting The Best Starting Price for Ebay Auctions}
 
-\articletype{Course Project Milestone 1: Data Preparation and Future Plan} % Research Article, Review Article, Communication, Erratum
+\articletype{Course Project Milestone 2: Prediction on Item sale} % Research Article, Review Article, Communication, Erratum
 
 
 
@@ -159,17 +159,17 @@ The other methods including Random Forest, Rule Induction, Neural net, Logistic 
 
 
 \subsection{Final Feature Selection}
-After integrating all results from 3 different tools, we narrowed the features down to these list.\\
-\begin{center}
-StartingBidPercent\\
-SellerClosePercent\\
-StartingBid\\
-AvgPrice\\
-AuctionCount\\
-AuctionSaleCount\\
-SellerAuctionCount\\
-AuctionMedianPrice\\
-\end{center}
+After integrating all results from 3 different tools, we narrowed the features down to these list of 8 features.
+\begin{itemize}
+\item StartingBidPercent
+\item SellerClosePercent
+\item StartingBid
+\item AvgPrice
+\item AuctionCount
+\item AuctionSaleCount
+\item SellerAuctionCount
+\item AuctionMedianPrice
+\end{itemize}
 And from here on, unless specified otherwise, we are using the reduced dataset with only these features.
 
 
@@ -189,23 +189,66 @@ For the next phase,we intend to build different models to make predictions. We p
 
 \section{Modeling}
 
-Modeling involves selecting suitable modeling techniques, generating test designs to validate the model, building predictive models and assessing these models.
-
-
+Modeling involves selecting suitable modeling techniques, generating test designs to validate the model, building predictive models and assessing these models.\\
+\\
 A predictive model is a mathematical function that predicts the value of some output variables based on the mapping between input variables. Historical data is used to train the model to arrive at the most suitable modeling technique. For example, a predictive model might predict the risk of developing a certain disease based on patient details. Some commonly used modeling techniques are as follows: Regression analysis that analyzes the relationship between the response or dependent variable and a set of independent or predictor variables. Decision trees that help explore possible outcomes for various options. Cluster analysis that groups objects into clusters to look for patterns. Association techniques that discover relationships between variables in large databases.
 
 
 \subsection{Modeling for Sale / No Sale}
-In all three tools here, we tried to use different type of classification algorithms to 
-
+In all three tools here, we tried to use different type of classification algorithms to decide whether items can be sold or not based on some information of item across Ebay.
+\\
 \subsubsection{Modeling in Weka}
-
+In Weka, we tried to models, Naive-bayes model and Logistic Regression model. For NB, the model computed is as follow:
+\begin{center}
+\includegraphics[scale=0.5]{weka-nb-model1.png}\hspace*{3em}
+\includegraphics[scale=0.5]{weka-nb-model2.png}
+\end{center}
+And also we evaluated the performance of this model:
+\begin{center}
+\includegraphics[scale=0.5]{weka-nb-result.png}
+\end{center}
+We decided to use F measure as the criteria to measure performances of each model. For NB model, the F measure is 0.639.\\
+Now we go on and try another model, Logistic Regression. Logistic regression measures the relationship between the categorical dependent variable and one or more independent variables by estimating probabilities using a logistic function, which is the cumulative logistic distribution. It fits very well in our situation, and it's a fast model to train and use. Below is the model we get:
+\begin{center}
+\includegraphics[scale=0.5]{weka-logi-model.png}
+\end{center}
+Again, we run 10 fold cross-validation on this model, and here is what we get:
+\begin{center}
+\includegraphics[scale=0.5]{weka-logi-result.png}
+\end{center}
+Obviously Logistic Regression model works much better than NB model, with a F measure of 0.837. Thus Logistic Regression will be our model of choice in Weka for this project.\\
 
 \subsubsection{Modeling in RapidMiner}
-
+In RapidMiner, models we tried include Naive Bayes, Random Forest, KNN, Decision Tree, Logistic Regression, Neural Network. We present Naive Bayse, Random Forest, and Decision Tree results here. We use cross validation for testing the performance. 
+The figure below shows the performance for Naive Bayes.
+\begin{center}
+\includegraphics[scale=0.5]{01_bayse_performance.png}
+\end{center} 
+As we can see, too many instances that should belong to class ``0" are assigned to class ``1", actually 70 percent of all instances are assigned to class ``1" based on this model. Therefore, we can say that NB model is a little biased in this case and we shouldn't rely on the result.\\
+\\
+The second model we tried is Decision Tree classifier. A decision tree is a decision support tool that uses a tree-like graph or model of decisions and their possible consequences, including chance event outcomes, resource costs, and utility. The decision tree algorithm comes with a ``depth" parameter and a evaluation algorithm. For the evaluation algorithm, we used Gain Ratio, and to obtain the best result, we tried multiple depths, and here is what we get.
+\begin{center}
+\textbf{Decision Tree performance with depth=5}\\
+\includegraphics[scale=0.5]{rm_decition_tree_depth5.png}
+\\
+\textbf{Decision Tree performance with depth=10}\\
+\includegraphics[scale=0.5]{rm_decision_tree_depth_50.png}
+\\
+\textbf{Decision Tree performance with depth=20}\\
+\includegraphics[scale=0.5]{rm_decision_tree_depth_50.png}
+\end{center} 
+As we can see, the overall accuracy goes up a little when the depth increases from 5 to 10, but then the performance stays the same. Intuitively this makes sense because as the depth go up, it's more likely to find relations between each attribute and the label, but given there're only 8 features in total, the depth wouldn't matter too much after it exceeds the number of features.\\
+\\
+The third model we tried is Random-Forest classifier. Random forests are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. Random forests correct for decision trees' habit of overfitting to their training set.\\
+\\
+Random Forest algorithm needs a user specified number of trees to start with, and here we fix it to 10 in all experiments. Still we use Gain Ratio as the evaluation algorithm, here is what we get:
+\begin{center}
+\includegraphics[scale=0.5]{03_Randforest_performance.png}
+\end{center} 
+We can tell that the overall accuracy is slightly lower than Decision Tree algorithm, but as a property of Random Forest, it tends to get rid of overfitting behaviors of decision trees, so this is acceptable. And we will find out which one is more accurate when we apply them on unknown datasets.\\
 
 \subsubsection{Modeling in R}
-We ran Logistic Regression algorithm from the famous ``Generalized Linear Model" package in R to start with,
+We ran Logistic Regression algorithm from the famous ``Generalized Linear Model" package in R.
 
 \section{Evaluation (ToDo)}
 Evaluation involves evaluating the results against the business success criteria defined at the beginning of the project.

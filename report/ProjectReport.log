@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  2 NOV 2015 22:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  4 NOV 2015 16:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -688,53 +688,163 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [6 <./images/rm-nb-auc.png> <./images/rm-dec-aw.png> <./images/rm-dec-perf.png>
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 162--163
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 164.
 
- []
-
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 180.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsppl.fd
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 180.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 164.
  [7 <./images/rm-dec-auc.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 192--195
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 198--200
+
+ []
+
+<images/weka-nb-model1.png, id=111, 319.1925pt x 478.78876pt>
+File: images/weka-nb-model1.png Graphic file (type png)
+
+<use images/weka-nb-model1.png>
+Package pdftex.def Info: images/weka-nb-model1.png used on input line 203.
+(pdftex.def)             Requested size: 159.59586pt x 239.39378pt.
+
+<images/weka-nb-model2.png, id=112, 296.10625pt x 370.38374pt>
+File: images/weka-nb-model2.png Graphic file (type png)
+
+<use images/weka-nb-model2.png>
+Package pdftex.def Info: images/weka-nb-model2.png used on input line 204.
+(pdftex.def)             Requested size: 148.05275pt x 185.1914pt.
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 []
  []
 
-[8]
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 226.
+[8] <images/weka-nb-result.png, id=119, 593.21625pt x 380.42125pt>
+File: images/weka-nb-result.png Graphic file (type png)
 
+<use images/weka-nb-result.png>
+Package pdftex.def Info: images/weka-nb-result.png used on input line 208.
+(pdftex.def)             Requested size: 296.60739pt x 190.21014pt.
+
+<images/weka-logi-model.png, id=120, 362.35374pt x 460.72125pt>
+File: images/weka-logi-model.png Graphic file (type png)
+
+<use images/weka-logi-model.png>
+Package pdftex.def Info: images/weka-logi-model.png used on input line 213.
+(pdftex.def)             Requested size: 181.17642pt x 230.36006pt.
+ [9 <./images/weka-nb-model1.png> <./images/weka-nb-model2.png> <./images/weka-
+nb-result.png>]
+<images/weka-logi-result.png, id=128, 591.20876pt x 398.48875pt>
+File: images/weka-logi-result.png Graphic file (type png)
+
+<use images/weka-logi-result.png>
+Package pdftex.def Info: images/weka-logi-result.png used on input line 217.
+(pdftex.def)             Requested size: 295.60365pt x 199.24388pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 219--220
+
+ []
+
+<images/01_bayse_performance.png, id=129, 796.9775pt x 122.4575pt>
+File: images/01_bayse_performance.png Graphic file (type png)
+
+<use images/01_bayse_performance.png>
+Package pdftex.def Info: images/01_bayse_performance.png used on input line 225
+.
+(pdftex.def)             Requested size: 398.48776pt x 61.22859pt.
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[10 <./images/weka-logi-model.png> <./images/weka-logi-result.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 227--230
+
+ []
+
+<images/rm_decition_tree_depth5.png, id=137, 826.08624pt x 135.50626pt>
+File: images/rm_decition_tree_depth5.png Graphic file (type png)
+
+<use images/rm_decition_tree_depth5.png>
+Package pdftex.def Info: images/rm_decition_tree_depth5.png used on input line 
+232.
+(pdftex.def)             Requested size: 413.0421pt x 67.75294pt.
+
+<images/rm_decision_tree_depth_50.png, id=138, 837.1275pt x 145.54375pt>
+File: images/rm_decision_tree_depth_50.png Graphic file (type png)
+
+<use images/rm_decision_tree_depth_50.png>
+Package pdftex.def Info: images/rm_decision_tree_depth_50.png used on input lin
+e 235.
+(pdftex.def)             Requested size: 418.56273pt x 72.77168pt.
+File: images/rm_decision_tree_depth_50.png Graphic file (type png)
+
+<use images/rm_decision_tree_depth_50.png>
+Package pdftex.def Info: images/rm_decision_tree_depth_50.png used on input lin
+e 238.
+(pdftex.def)             Requested size: 418.56273pt x 72.77168pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--245
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--245
+
+ []
+
+[11 <./images/01_bayse_performance.png> <./images/rm_decition_tree_depth5.png> 
+<./images/rm_decision_tree_depth_50.png>]
+<images/03_Randforest_performance.png, id=146, 787.94376pt x 128.48pt>
+File: images/03_Randforest_performance.png Graphic file (type png)
+
+<use images/03_Randforest_performance.png>
+Package pdftex.def Info: images/03_Randforest_performance.png used on input lin
+e 246.
+(pdftex.def)             Requested size: 393.97092pt x 64.23984pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
+
+ []
+
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 269.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 226.
+(Font)              size <5> substituted on input line 269.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <5.5> not available
-(Font)              size <5> substituted on input line 226.
+(Font)              size <5> substituted on input line 269.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 226.
+(Font)              size <5> substituted on input line 269.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 226.
+(Font)              size <5> substituted on input line 269.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 240--241
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[12 <./images/03_Randforest_performance.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
 []\OT1/ppl/m/n/9 Retrived from http://jaygrossman.com/post/2013/06/10/Predictin
 g-eBay-Auction-Sales-with-Machine-
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 245.
-[9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 245.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 288.
+[13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 288.
  (./ProjectReport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 245.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 245.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 288.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 288.
 Package rerunfilecheck Info: File `ProjectReport.out' has not changed.
 (rerunfilecheck)             Checksum: 35DE32A3842C92053594169884A58DC4;544.
 
@@ -747,13 +857,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 7818 strings out of 493089
- 111211 string characters out of 6134842
- 214178 words of memory out of 5000000
- 11142 multiletter control sequences out of 15000+600000
+ 7867 strings out of 493089
+ 112672 string characters out of 6134842
+ 214170 words of memory out of 5000000
+ 11178 multiletter control sequences out of 15000+600000
  28705 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,9n,30p,952b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,9n,30p,952b,395s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/t
 exlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texli
@@ -763,10 +873,10 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive
 5/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf
 -dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/f
 onts/type1/urw/palatino/uplri8a.pfb>
-Output written on ProjectReport.pdf (9 pages, 1361824 bytes).
+Output written on ProjectReport.pdf (13 pages, 1794433 bytes).
 PDF statistics:
- 170 PDF objects out of 1000 (max. 8388607)
- 125 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
- 133 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 205 PDF objects out of 1000 (max. 8388607)
+ 138 compressed objects within 2 object streams
+ 42 named destinations out of 1000 (max. 500000)
+ 178 words of extra memory for PDF output out of 10000 (max. 10000000)
 
