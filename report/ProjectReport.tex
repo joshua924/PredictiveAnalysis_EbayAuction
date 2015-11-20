@@ -305,16 +305,28 @@ For K-NN, we try to run it with different number of neighbors in order to find t
 \hline
 Number of Neighbors  & F measure \\ \midrule
 \hline
-5 & 0.829   \\
+5 & 0.639   \\
+\hline
+6 & 0.635   \\
 \hline
 7  & 0.830  \\
 \hline
-9  & 0.830  \\ \bottomrule
+8 & 0.828  \\
+\hline
+9  & 0.830  \\ 
+\hline
+10 & 0.829 \\ 
+\hline
+15 & 0.827 \\ 
+\hline
+20 & 0.827 \\
+\hline
+50 & 0.823 \\ \bottomrule
 \hline
 \end{tabular}
 \end{table}
 
-It appears that number of neighbors doesn't seem to make much of a difference here, but the overall accuracy is very solid.\\
+It appears that when the number of neighbors is from 5 to 10, the accuracy achieves the highest, and as the number keeps growing, the performance actually goes down a little, although the loss is very minimal. Therefore we try all values from 5 to 10 and we find that ``7" and ``9" out-perform other values. Considering the fact that the smaller the number of neighbors is, the faster will the algorithm runs (slightly), we will choose ``7" as the parameter for K-NN model in this project.\\
 
 \subsubsection{Final Model Selection}
 Considering all models we've tried, we decide to go with Logistic Regression model. It performs the most stably and can achieve a near 90 percent accuracy according to our cross-validation result from R.
