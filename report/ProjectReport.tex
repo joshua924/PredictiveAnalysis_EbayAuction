@@ -83,8 +83,7 @@ The caret R package provides tools automatically report on the relevance and imp
 \begin{center}
 \includegraphics[scale=0.5]{entropy.png}\\
 \mbox{}\\
-\includegraphics[scale=0.5]{chi-square.png}\\
-\mbox{}\\
+\includegraphics[scale=0.5]{chi-square.png}\hspace*{2em}
 \includegraphics[scale=0.5]{correlation.png}\\
 \end{center}
 As a result, we summarize all the three different methods and compute average rank for each attribute. The result is presented in table \ref{r-rank}.
@@ -159,96 +158,183 @@ The other methods including Random Forest, Rule Induction, Neural net, Logistic 
 
 
 \subsection{Final Feature Selection}
-After integrating all results from 3 different tools, we narrowed the features down to these list of 8 features.
-\begin{itemize}
-\item StartingBidPercent
-\item SellerClosePercent
-\item StartingBid
-\item AvgPrice
-\item AuctionCount
-\item AuctionSaleCount
-\item SellerAuctionCount
-\item AuctionMedianPrice
-\end{itemize}
-And from here on, unless specified otherwise, we are using the reduced dataset with only these features.
+To fairly select the features based on all three tools, we define an algorithm to integrate the results. An attributing score is assigned to each feature for final ranking, and the rules for assigning the score is as follow:\\
+\begin{enumerate}
+  \item In ranked result, the feature ranked $i$th is assigned a score of $12-i$, e.g. the highest feature gets a score of 11.
+  \item In not ranked result, the features selected as useful is assigned a score of $8$ and others are assigned score of $0$.
+  \item The final score is a summation of the results from all tools with all algorithms.
+\end{enumerate}
+The result computed is presented in table \ref{f-rank}.
+ 
+\begin{table}[h]
+\centering
+\caption{Overall Feature Attributing Scores}
+\label{f-rank}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Attribute Name  & Weka Attributing Score & R Attributing Score & RapidMiner Attributing Score & \textbf{Overall Attributing Score} \\ \midrule
+SellerClosePercent & 18   & 22  & 16 & 56   \\
+AuctionMedianPrice & 12    & 20   & 8  & 40 \\
+StartingBid  & 18    & 12  & 8  & 38 \\
+AvgPrice  & 7  & 20  & 8  &  35   \\
+StartingBidPercent  & 21  & 10  & 0 &  31  \\
+AuctionCount & 13    & 16   & 0  & 29  \\
+SellerAuctionCount & 17  & 8    & 0  & 25 \\
+AuctionSaleCount  & 6     & 14  & 0  & 20  \\
+ItemAuctionSellPercent & 7   & 4  & 8 & 19   \\
+SellerItemAvg  & 8    & 6  & 0   & 14 \\
+IsHOF  & 5    & 2  & 0  & 7  \\ \bottomrule
+\end{tabular}
+\end{table}
 
-
-\section{Team Members Responsibilities and Plan for the Next Phase}
-
-Right now, all group members are actively participate in the project. An approximate list of each team members' responsiblity is:
-\begin{itemize}
-\item Jiacheng Liao: data preprocessing, report write-up
-\item Yi Wan: data preprocessing, feature selection in Rapidminer
-\item Shuang Zhou: data preprocessing, feature selection in Weka
-\item Zhaoyin Zhu: data preprocessing, feature selection in R
-\end{itemize}
-
-For the next phase,we intend to build different models to make predictions. We plan to apply various statistical machine learning model and use cross-validation to test each model. Also, we would study some economic aspects of the auction theory to help us build the model.
-
+As indicated by Weka, the number of features we need to achieve a 0.95 information gain is 8, we narrowed the features down to the first 8 features in the table. And from here on, unless specified otherwise, we are using the reduced dataset with only these features.
 
 
 \section{Modeling}
 
 Modeling involves selecting suitable modeling techniques, generating test designs to validate the model, building predictive models and assessing these models.\\
 \\
-A predictive model is a mathematical function that predicts the value of some output variables based on the mapping between input variables. Historical data is used to train the model to arrive at the most suitable modeling technique. For example, a predictive model might predict the risk of developing a certain disease based on patient details. Some commonly used modeling techniques are as follows: Regression analysis that analyzes the relationship between the response or dependent variable and a set of independent or predictor variables. Decision trees that help explore possible outcomes for various options. Cluster analysis that groups objects into clusters to look for patterns. Association techniques that discover relationships between variables in large databases.
-
+A predictive model is a mathematical function that predicts the value of some output variables based on the mapping between input variables. Historical data is used to train the model to arrive at the most suitable modeling technique. For example, a predictive model might predict the risk of developing a certain disease based on patient details. Some commonly used modeling techniques are as follows: Regression analysis that analyzes the relationship between the response or dependent variable and a set of independent or predictor variables. Decision trees that help explore possible outcomes for various options. Cluster analysis that groups objects into clusters to look for patterns. Association techniques that discover relationships between variables in large databases.\\
+\\
+Modeling in this project consists of two parts. In the first part, we try to build a model to predict whether an item can be sold or not. And in the second model, we try to predict a best starting price that maximize the final sale price.\\
 
 \subsection{Modeling for Sale / No Sale}
 In all three tools here, we tried to use different type of classification algorithms to decide whether items can be sold or not based on some information of item across Ebay.
 \\
 \subsubsection{Modeling in Weka}
-In Weka, we tried to models, Naive-bayes model and Logistic Regression model. For NB, the model computed is as follow:
-\begin{center}
-\includegraphics[scale=0.5]{weka-nb-model1.png}\hspace*{3em}
-\includegraphics[scale=0.5]{weka-nb-model2.png}
-\end{center}
-And also we evaluated the performance of this model:
-\begin{center}
-\includegraphics[scale=0.5]{weka-nb-result.png}
-\end{center}
-We decided to use F measure as the criteria to measure performances of each model. For NB model, the F measure is 0.639.\\
-Now we go on and try another model, Logistic Regression. Logistic regression measures the relationship between the categorical dependent variable and one or more independent variables by estimating probabilities using a logistic function, which is the cumulative logistic distribution. It fits very well in our situation, and it's a fast model to train and use. Below is the model we get:
-\begin{center}
-\includegraphics[scale=0.5]{weka-logi-model.png}
-\end{center}
-Again, we run 10 fold cross-validation on this model, and here is what we get:
-\begin{center}
-\includegraphics[scale=0.5]{weka-logi-result.png}
-\end{center}
-Obviously Logistic Regression model works much better than NB model, with a F measure of 0.837. Thus Logistic Regression will be our model of choice in Weka for this project.\\
+To compare the effectiveness of different algorithms, we decided to use F measure as the criteria to measure performances of each model. The label of interest is sold (denoted by 1) and not sold (denoted by 0). NB classifier is the first algorithm we try. Naive Bayes classifiers are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong (naive) independence assumptions between the features. It's as straightforward as it gets. \\
+\\
+Another algorithm we use is Logistic Regression, Logistic regression measures the relationship between the categorical dependent variable and one or more independent variables by estimating probabilities using a logistic function, which is the cumulative logistic distribution. It fits very well in our situation, and it's a fast model to train and use. Both NB classifier and Logistic Regression are applied over the dataset in Weka, and results are presented in table \ref{weka-model}.\\
+
+\begin{table}[h]
+\centering
+\caption{Model Comparison in Weka}
+\label{weka-model}
+\begin{tabular}{@{}|l|l|@{}}
+\toprule
+\hline
+Model Name  & F measure \\ \midrule
+\hline
+Naive Bayes & 0.639   \\
+\hline
+Logistic Regression  & 0.837 \\ \bottomrule
+\hline
+\end{tabular}
+\end{table}
+
+Obviously Logistic Regression model works much better than NB model for this dataset, with a F measure of 0.837. But we will continue to examine different models with other tools.\\
 
 \subsubsection{Modeling in RapidMiner}
-In RapidMiner, models we tried include Naive Bayes, Random Forest, KNN, Decision Tree, Logistic Regression, Neural Network. We present Naive Bayse, Random Forest, and Decision Tree results here. We use cross validation for testing the performance. 
-The figure below shows the performance for Naive Bayes.
-\begin{center}
-\includegraphics[scale=0.5]{01_bayse_performance.png}
-\end{center} 
-As we can see, too many instances that should belong to class ``0" are assigned to class ``1", actually 70 percent of all instances are assigned to class ``1" based on this model. Therefore, we can say that NB model is a little biased in this case and we shouldn't rely on the result.\\
+In RapidMiner, models we tried include Naive Bayes, Random Forest, Decision Tree, Logistic Regression, Neural Network. Some of the models can't finish in reasonable time due to the RapidMiner design that enforce us to add ``Performance" module into the process, which noticeably increases the running time. So as a result, we only present Naive Bayes, Random Forest, and Decision Tree models here. \\
 \\
-The second model we tried is Decision Tree classifier. A decision tree is a decision support tool that uses a tree-like graph or model of decisions and their possible consequences, including chance event outcomes, resource costs, and utility. The decision tree algorithm comes with a ``depth" parameter and a evaluation algorithm. For the evaluation algorithm, we used Gain Ratio, and to obtain the best result, we tried multiple depths, and here is what we get.
-\begin{center}
-\textbf{Decision Tree performance with depth=5}\\
-\includegraphics[scale=0.5]{rm_decition_tree_depth5.png}
+A decision tree is a decision support tool that uses a tree-like graph or model of decisions and their possible consequences, including chance event outcomes, resource costs, and utility. The decision tree algorithm comes with a ``depth" parameter and a evaluation algorithm. For the evaluation algorithm, we used Gain Ratio.\\
 \\
-\textbf{Decision Tree performance with depth=10}\\
-\includegraphics[scale=0.5]{rm_decision_tree_depth_50.png}
+Random forests are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. Random forests correct for decision trees' habit of overfitting to their training set. See table \ref{rm-model} for all results.\\ 
+
+\begin{table}[h]
+\centering
+\caption{Model Comparison in Weka}
+\label{rm-model}
+\begin{tabular}{@{}|l|l|@{}}
+\toprule
+\hline
+Model Name  & F measure \\ \midrule
+\hline
+Naive Bayes & 0.629   \\
+\hline
+Decision Tree (Depth = 5) & 0.8223\\
+\hline
+Decision Tree (Depth = 10) & 0.8334 \\
+\hline
+Decision Tree (Depth = 50) & 0.8334 \\
+\hline
+Random Forest & 0.7912 \\ \bottomrule
+\hline
+\end{tabular}
+\end{table}
+
+In Decision Tree classifier, to obtain the best result, we tried multiple depths from 5 to 50, the accuracy grows a little with the depth at first, and then stays the same when the depth is greater than 10. Intuitively this makes sense because as the depth go up, it's more likely to find relations between each attribute and the label, but given there're only 8 features in total, the depth wouldn't matter too much after it exceeds the number of features.\\
 \\
-\textbf{Decision Tree performance with depth=20}\\
-\includegraphics[scale=0.5]{rm_decision_tree_depth_50.png}
-\end{center} 
-As we can see, the overall accuracy goes up a little when the depth increases from 5 to 10, but then the performance stays the same. Intuitively this makes sense because as the depth go up, it's more likely to find relations between each attribute and the label, but given there're only 8 features in total, the depth wouldn't matter too much after it exceeds the number of features.\\
-\\
-The third model we tried is Random-Forest classifier. Random forests are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. Random forests correct for decision trees' habit of overfitting to their training set.\\
-\\
-Random Forest algorithm needs a user specified number of trees to start with, and here we fix it to 10 in all experiments. Still we use Gain Ratio as the evaluation algorithm, here is what we get:
-\begin{center}
-\includegraphics[scale=0.5]{03_Randforest_performance.png}
-\end{center} 
-We can tell that the overall accuracy is slightly lower than Decision Tree algorithm, but as a property of Random Forest, it tends to get rid of overfitting behaviors of decision trees, so this is acceptable. And we will find out which one is more accurate when we apply them on unknown datasets.\\
+In Random Forest algorithm, a somewhat surprising discovery is that the overall accuracy is slightly lower than Decision Tree algorithm, because given that Random Forest classifier is a much more complicated algorithm, we suppose it should do better. But as a property of Random Forest, it tends to get rid of overfitting behaviors of decision trees, and the accuracy here is computed based on the exact same dataset we used for training the classifier. Therefore, this is an acceptable loss. And we will find out which one is more accurate when we apply them on unknown datasets.\\
 
 \subsubsection{Modeling in R}
-We ran Logistic Regression algorithm from the famous ``Generalized Linear Model" package in R.
+Just to gain experience on as many tools as possible, we also try to build our model with R. We chose two algorithms to experiment with, namely, Logistic Regression (just to compare results with RapidMiner and Weka) and K-Nearest Neighbors. The k-Nearest Neighbors algorithm (or K-NN for short) is a non-parametric method used for classification and regression. In most cases, the input consists of the $k$ closest training examples in the feature space. The output is a class membership. An object is classified by a majority vote of its neighbors, with the object being assigned to the class most common among its $k$ nearest neighbors ($k$ is a positive integer, typically small). If $k$ = 1, then the object is simply assigned to the class of that single nearest neighbor. We are able to find Logistic Regression algorithm from the famous ``Generalized Linear Model" package in R, and we also find a very authoritative implementation of KNN algorithm in \_\_\_\_\_\_\_\_. Logistic Regression Result from R is in table \ref{r-lr}:\\
+
+\begin{table}[h]
+\centering
+\caption{Coefficient Table for Logistic Regression}
+\label{r-lr}
+\begin{tabular}{@{}|l|r|@{}}
+\toprule
+\hline
+Entry Name  & Coefficient \\ \midrule
+\hline
+Intercept & -1.760e+00   \\
+\hline
+StartingBidPercent & -8.886e-01 \\
+\hline
+SellerClosePercent & 4.829e+00  \\
+\hline
+StartingBid & -9.735e-03  \\
+\hline
+AvgPrice & -9.735e-05 \\
+\hline
+AuctionCount & -1.670e-03   \\
+\hline
+AuctionSaleCount & 5.457e-03  \\
+\hline
+SellerAuctionCount & 1.328e-05   \\
+\hline
+AuctionMedianPrice & 9.477e-03  \\ \bottomrule
+\hline
+\end{tabular}
+\end{table}
+
+To interpret the table, let's say $e_1, e_2, ..., e_n$ are $n$ entries (features), and $c_0, c_1, c_2, ..., c_n$ are $n$ corresponding coefficients with $c_0$ being the intercept, or constant, in this formula, computed by the algorithm. Then, for a given instance $x$, the label of this instance can be generated with:
+$$L(x) = c_0 + \sum_{i=1}^{n}e_i\times c_i$$
+We can't obtain much information by simply looking at the expression, although some may wonder the importance of each feature is indicated by the absolute value of each coefficient. That's not true in most cases, as all features have different magnitudes and coefficients play the role as mitigator among all those features. We evaluate the model, and the F measure reaches 0.89.\\
+\\
+For K-NN, we try to run it with different number of neighbors in order to find the ``magic number", and results are presented in table \ref{r-knn}.
+
+\begin{table}[h]
+\centering
+\caption{K-NN With Different Number Of Neighbors}
+\label{r-knn}
+\begin{tabular}{@{}|l|l|@{}}
+\toprule
+\hline
+Number of Neighbors  & F measure \\ \midrule
+\hline
+5 & 0.829   \\
+\hline
+7  & 0.830  \\
+\hline
+9  & 0.830  \\ \bottomrule
+\hline
+\end{tabular}
+\end{table}
+
+It appears that number of neighbors doesn't seem to make much of a difference here, but the overall accuracy is very solid.\\
+
+\subsubsection{Final Model Selection}
+Considering all models we've tried, we decide to go with Logistic Regression model. It performs the most stably and can achieve a near 90 percent accuracy according to our cross-validation result from R.
+
+\subsection{Modeling For Best Starting Price}
+To be finished
+
+
+\section{Team Members Responsibilities and Plan for the Next Phase}
+
+Right now, all group members are actively participate in the project. An approximate list of each team members' responsibility is:
+\begin{itemize}
+\item Jiacheng Liao: data preprocessing, report write-up
+\item Yi Wan: data preprocessing, feature selection in RapidMiner
+\item Shuang Zhou: data preprocessing, feature selection in Weka
+\item Zhaoyin Zhu: data preprocessing, feature selection in R
+\end{itemize}
+
+For the next phase,we intend to build different models to make predictions. We plan to apply various statistical machine learning model and use cross-validation to test each model. Also, we would study some economic aspects of the auction theory to help us build the model.
+
 
 \section{Evaluation (ToDo)}
 Evaluation involves evaluating the results against the business success criteria defined at the beginning of the project.
