@@ -1,0 +1,35 @@
+package edu.nyu.sz1288;
+
+import weka.classifiers.functions.Logistic;
+import weka.core.Instance;
+import weka.core.Instances;
+
+public class WekaRunner {
+	public static void main(String args[]) {
+		try {
+			Instances instances = IOHandler.readData("data/SelectedFeatureData.csv");
+			instances.setClassIndex(1);
+			instances = Filtering.discretize(instances);
+			instances.setClassIndex(0);
+			
+			Logistic log = new Logistic();
+			log.buildClassifier(instances);
+			
+			Instance inst = new Instance(9);
+			inst.setDataset(instances);
+			inst.setClassMissing();
+			inst.setValue(1, 1.4787);
+			inst.setValue(2, 0.0537);
+			inst.setValue(3, 0.9259259259259259259);
+			inst.setValue(4, 18.4273);
+			inst.setValue(5, 583);
+			inst.setValue(6, 291);
+			inst.setValue(7, 54);
+			inst.setValue(8, 12.26);
+			System.out.println(inst);
+			//System.out.println(log.classifyInstance(first));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="weka.core.SerializationHelper"/>
+<fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="weka.core.converters.CSVLoader"/>
+<fullyQualifiedTypeName name="weka.core.converters.ArffSaver"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="weka.core.converters.ArffLoader.ArffReader"/>
+<fullyQualifiedTypeName name="java.io.FileReader"/>
+<fullyQualifiedTypeName name="weka.filters.unsupervised.attribute.Remove"/>
+<fullyQualifiedTypeName name="weka.filters.Filter"/>
+<fullyQualifiedTypeName name="weka.classifiers.Classifier"/>
+<fullyQualifiedTypeName name="edu.nyu.sz1288.IOHandler"/>
+<fullyQualifiedTypeName name="weka.classifiers.functions.Logistic"/>
+<fullyQualifiedTypeName name="weka.core.Instances"/>
+<fullyQualifiedTypeName name="weka.filters.unsupervised.attribute.Discretize"/>
+<fullyQualifiedTypeName name="weka.core.Instance"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
+</qualifiedTypeNameHistroy>

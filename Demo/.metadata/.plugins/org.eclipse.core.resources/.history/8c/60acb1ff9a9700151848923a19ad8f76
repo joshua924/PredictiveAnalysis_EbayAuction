@@ -1,0 +1,69 @@
+package edu.nyu.sz1288;
+
+//instances = IOHandler.readData("data/SelectedFeatureData.csv");
+//instances.setClassIndex(1);
+//instances = Filtering.discretize(instances);
+//instances.setClassIndex(0);
+//log.buildClassifier(instances);
+
+//String outputLine = "" + log.classifyInstance(inst);
+//out.println(outputLine);
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+import org.json.JSONObject;
+
+import weka.classifiers.functions.Logistic;
+import weka.core.Instance;
+import weka.core.Instances;
+import com.sun.net.httpserver;
+
+public class WebServer {
+	public static void main(String[] args) throws IOException {
+		HttpServer server = HttpServer.create(new InetSocketAddress(8000));
+		server.createContext("/applications/myapp", new MyHandler());
+		server.setExecutor(null); // creates a default executor
+		server.start();
+
+		Socket clientSocket = null;
+		while (true) {
+			try {
+				clientSocket = serverSocket.accept();
+				System.out.println("Connection accepted.");
+			} catch (IOException e) {
+				System.err.println("Accept failed.");
+				System.exit(1);
+			}
+
+			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),
+					true);
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					clientSocket.getInputStream()));
+
+			String inputLine = null, str = "";
+			while ((inputLine = in.readLine()) != null) {
+				str += inputLine;
+				System.out.println(inputLine);
+			}
+			// Instance inst = InstanceMaker.makeInstance(instances, str);
+			try {
+
+				JSONObject ob = new JSONObject(str);
+				System.out.println(ob.length());
+				out.println(ob.length());
+			} catch (Exception e) {
+				System.err.println("The instance is invalid.");
+			}
+			out.println(str);
+			out.flush();
+			out.close();
+			in.close();
+			clientSocket.close();
+			serverSocket.close();
+		}
+	}
+}

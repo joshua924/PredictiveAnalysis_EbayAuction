@@ -1,0 +1,14 @@
+package edu.nyu.sz1288;
+
+import weka.core.Instance;
+import weka.core.Instances;
+
+public class WekaRunner {
+
+	public static Instance makeInstance(Instances instances, String str) {
+		Instance inst = new Instance(9);
+		inst.setClassMissing();
+		inst.setDataset(instances);
+		return null;
+	}
+}

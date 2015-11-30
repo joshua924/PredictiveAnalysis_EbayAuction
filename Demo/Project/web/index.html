@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="runPrediction">
+<meta charset="UTF-8">
+<head>
+<title>Prediction Page</title>
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/bootstrap-theme.css" rel="stylesheet" />
+<script src="js/angular.js"></script>
+<script>
+    angular.module("runPrediction", []).controller("PredictionController", function($scope, $http) {
+        $scope.item = {};
+        $scope.success = false;
+        $scope.start = function() {
+            $http.post("http://localhost:9999?"
+                + "startingbidpercent=" + $scope.item.startingbidpercent
+                + "&sellerclosepercent=" + $scope.item.sellerclosepercent
+                + "&averageprice=" + $scope.item.averageprice
+                + "&medianprice=" + $scope.item.medianprice
+                + "&auctioncount=" + $scope.item.auctioncount
+                + "&sellerauctioncount=" + $scope.item.sellerauctioncount
+                + "&auctionsalecount=" + $scope.item.auctionsalecount
+            ).success(function(data) {
+                $scope.class = (data.startsWith("Sale"));
+                $scope.percent = data.split("\t")[1];
+                $scope.success = true;
+            }
+            ).error(function(data) {
+                $scope.success = false;
+            });
+        }
+    });
+</script>
+</head>
+
+<body style="font-family:Charcoal">
+  <font size="3">
+  <div ng-controller="PredictionController" class="well">
+    <h1 class="panel-heading">Try Your Auction Item</h1><br>
+    <form ng-submit="start()">
+    <table style="width:100%" class="table table-striped">
+        <tr>
+            <td>Starting Bid Percent:</td>
+            <td><input type="number" class="form-control" name="startingbidpercent" step="0.00001" ng-model="item.startingbidpercent" size="25" min="0" required/></td>
+        </tr>
+        <tr>
+            <td>Seller Close Percent:</td>
+            <td><input type="number" class="form-control" name="sellerclosepercent" step="0.00001" ng-model="item.sellerclosepercent" size="25" min="0" max="1" required/></td>
+        </tr>
+        <tr>
+            <td>Average Price:</td>
+            <td><input type="number" class="form-control" name="averageprice" step="0.0001" ng-model="item.averageprice" size="25" min="0" required/></td>
+        </tr>
+        <tr>
+            <td>Median Price:</td>
+            <td><input type="number" class="form-control" name="medianprice" step="0.0001" ng-model="item.medianprice" size="25" min="0" required/></td>
+        </tr>
+        <tr>
+            <td>Auction Count:</td>
+            <td><input type="number" class="form-control" name="auctioncount" ng-model="item.auctioncount" min="0" 
+            required /></td>
+        </tr>
+        <tr>
+            <td>Auction Sale Count:</td>
+            <td><input type="number" class="form-control" name="auctionsalecount" ng-model="item.auctionsalecount" min="0" required /></td>
+        </tr>
+        <tr>
+            <td>Seller Auction Count:</td>
+            <td><input type="number" class="form-control" name="sellerauctioncount" ng-model="item.sellerauctioncount" min="0" required /></td>
+        </tr>
+    </table>
+    
+    <p><i>Tip: please try multiple starting bid percent values to find the optimal.</i></p>
+    <br>
+    <span class="input-group-btn">
+        <button id="start" class="btn btn-primary" type="submit">See Results</button>
+    </span>
+    </form>
+    <br><br>
+    <table id="result" align="center" style="width:40%" class="table table-striped">
+        <tr>
+            <td><label>Can I sell this item?</label></td>
+            <td><span ng-show="success" style="margin-left:20px">
+                <img style="height:24px; width:24px" ng-show="class" ng-src="image/sold.jpeg" />
+                <img style="height:24px; width:24px" ng-hide="class" ng-src="image/nosold.jpeg" />
+            </span></td>
+        </tr>
+        <tr>
+            <td><label>Predicted final price (nomalized):</label></td>
+            <td><span ng-show="success" style="margin-left:20px">
+            <b><i>{{percent | number : 3}}</i></b>
+            </span></td>
+        </tr>
+    </table>
+  </div>
+  </font>
+</body>
+</html>

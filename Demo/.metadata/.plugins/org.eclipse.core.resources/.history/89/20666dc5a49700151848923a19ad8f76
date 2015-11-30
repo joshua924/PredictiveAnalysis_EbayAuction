@@ -1,0 +1,77 @@
+package edu.nyu.sz1288;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.util.Scanner;
+
+import org.json.JSONObject;
+
+import weka.classifiers.functions.Logistic;
+import weka.core.Instance;
+import weka.core.Instances;
+
+import com.sun.net.httpserver.Headers;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+
+@SuppressWarnings("restriction")
+public class QueryHandler implements HttpHandler {
+	private Logistic log;
+	private Instances instances;
+	
+	public QueryHandler() throws Exception {
+		instances = IOHandler.readData("data/SelectedFeatureData.csv");
+		instances.setClassIndex(1);
+		instances = Filtering.discretize(instances);
+		instances.setClassIndex(0);
+		instances.deleteAttributeAt(2);
+		
+		log = new Logistic();
+		//log.buildClassifier(instances);
+		System.out.println(instances.firstInstance());
+	}
+	
+	@Override
+	public void handle(HttpExchange exchange) throws IOException {
+		Headers responseHeaders = exchange.getResponseHeaders();
+		responseHeaders.set("Content-Type", "text/plain");
+	    responseHeaders.set("Access-Control-Allow-Origin", "*");
+	    Instance instance = constructInstance(exchange, instances);
+		try {
+			String response = instance.toString();
+			//String response = log.classifyInstance(instance) == 1.00 ? "Sale" : "No Sale";
+			System.out.println(response);
+			OutputStream responseBody = exchange.getResponseBody();
+			responseBody.write(response.getBytes());
+			responseBody.flush();
+			responseBody.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private Instance constructInstance(HttpExchange exchange, Instances instances) {
+		String query = exchange.getRequestURI().getQuery();
+		Instance inst = new Instance(7);
+		inst.setClassMissing();
+		inst.setDataset(instances);
+		inst.setValue(1, (Double) exchange.getAttribute("sellerclosepercent"));
+		System.out.println("1");
+		inst.setValue(2, (Double) exchange.getAttribute("averageprice"));
+		inst.setValue(3, (Integer) exchange.getAttribute("auctioncount"));
+		inst.setValue(4, (Integer) exchange.getAttribute("auctionsalecount"));
+		inst.setValue(5, (Double) exchange.getAttribute("sellerauctioncount"));
+		inst.setValue(6, (Integer) exchange.getAttribute("medianprice"));
+		System.out.println(inst);
+		return inst;
+	}
+
+	public static void main(String[] args) throws Exception {
+		HttpServer server = HttpServer.create(new InetSocketAddress(9999), 0);
+		server.createContext("/", new QueryHandler());
+		server.setExecutor(null);
+		server.start();
+	}
+}

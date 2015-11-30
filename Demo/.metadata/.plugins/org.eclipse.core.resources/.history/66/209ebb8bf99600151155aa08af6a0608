@@ -1,0 +1,57 @@
+package edu.nyu.sz1288;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+import weka.classifiers.functions.Logistic;
+import weka.core.Instances;
+
+public class WebServer {
+	public static void main(String[] args) throws IOException {
+		Logistic log = new Logistic();
+        ServerSocket serverSocket = null;
+        try {
+        	Instances instances = IOHandler.readData("data/SelectedFeatureData.csv");
+			instances.setClassIndex(1);
+			instances = Filtering.discretize(instances);
+			instances.setClassIndex(0);
+			
+			log.buildClassifier(instances);
+            serverSocket = new ServerSocket(9999);
+        } catch (Exception e) {
+            System.err.println("Failed to start server on port: 9999.");
+            System.exit(1);
+        }
+
+        Socket clientSocket = null;
+        while(true) {
+	        try {
+	            clientSocket = serverSocket.accept();
+	        } catch (IOException e) {
+	            System.err.println("Accept failed.");
+	            System.exit(1);
+	        }
+	
+	        PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+	        BufferedReader in = new BufferedReader(
+	                new InputStreamReader(
+	                clientSocket.getInputStream()));
+	        String outputLine = "okokook";
+	        out.println(outputLine);
+	
+	        String inputLine = null;
+			while ((inputLine = in.readLine()) != null) {
+	             // do something
+	        }
+	        out.flush();
+	        out.close();
+	        in.close();
+	        clientSocket.close();
+	        serverSocket.close();
+	    }
+	}
+}

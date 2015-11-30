@@ -1,0 +1,28 @@
+package edu.nyu.sz1288;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Scanner;
+
+import org.json.JSONObject;
+
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+
+public class QueryHandler {
+		@Override
+		public void handle(HttpExchange exchange) throws IOException {
+			Scanner sc = new Scanner(exchange.getRequestBody());
+			String str = "";
+			while(sc.hasNextLine()) {
+				str += sc.nextLine();
+			}
+			sc.close();
+			JSONObject ob = new JSONObject(str);
+			String response = "Response: " + ob.length();
+			System.out.println(response);
+			OutputStream responseBody = exchange.getResponseBody();
+			responseBody.write(response.getBytes());
+			responseBody.flush(); responseBody.close();
+		}
+}
