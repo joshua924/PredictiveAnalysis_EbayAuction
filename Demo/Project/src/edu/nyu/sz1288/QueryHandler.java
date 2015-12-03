@@ -18,10 +18,11 @@ import com.sun.net.httpserver.HttpServer;
 
 @SuppressWarnings("restriction")
 public class QueryHandler implements HttpHandler {
-	private Logistic log;
+	private Logistic logistic;
 	private LinearRegression linear;
 	private Instances instances, copyInstances;
-	
+	private static final double MIN = 0.1, MAX = 5.0;
+
 	public QueryHandler() throws Exception {
 		System.out.println("Reading in instances ..");
 		instances = IOHandler.readData("data/SelectedFeatureData.csv");
@@ -32,8 +33,8 @@ public class QueryHandler implements HttpHandler {
 		instances = Filtering.discretize(instances);
 		instances.setClassIndex(0);
 		instances.deleteAttributeAt(1);
-		log = new Logistic();
-		log.buildClassifier(instances);
+		logistic = new Logistic();
+		logistic.buildClassifier(instances);
 		
 		System.out.println("Building Linear Regression classifier ..");
 		copyInstances.setClassIndex(1);
@@ -52,10 +53,9 @@ public class QueryHandler implements HttpHandler {
 	    exchange.sendResponseHeaders(200, 0);
 		try {
 			Instance instance = constructInstance(exchange, instances);
-			double d = log.classifyInstance(instance);
-			double e = linear.classifyInstance(instance);
-			System.out.println(d + " and " + e);
-			String response = (d == 1.00 ? "Sale" : "No Sale") + "\t" + e;
+			double[] p = getBestStartingPrice(instance);
+			System.out.println("Probability of sale is " + p[2] + " and price is " + p[3]);
+			String response = p[0] + "\t" + p[1] + "\t" + p[2] + "\t" + p[3];
 			OutputStream responseBody = exchange.getResponseBody();
 			responseBody.write(response.getBytes());
 			responseBody.flush();
@@ -65,11 +65,28 @@ public class QueryHandler implements HttpHandler {
 		}
 	}
 	
+	private double[] getBestStartingPrice(Instance instance) throws Exception {
+		double bestStartingPrice = -1, bestFinalPrice = Double.MIN_VALUE,
+				bestSaleProb = -1, bestPricePercent = -1;
+		for(double i = MIN; i <= MAX; i += 0.01) {
+			instance.setValue(1, i);
+			double tmpBestSaleProb = logistic.distributionForInstance(instance)[1];
+			double tmpBestPricePercent = linear.classifyInstance(instance);
+			double expe = tmpBestSaleProb * tmpBestPricePercent;
+			if(expe > bestFinalPrice) {
+				bestStartingPrice = i;
+				bestFinalPrice = expe;
+				bestSaleProb = tmpBestSaleProb;
+				bestPricePercent = tmpBestPricePercent;
+			}
+		}
+		return new double[] {bestStartingPrice, bestFinalPrice, bestSaleProb, bestPricePercent};
+	}
+
 	private Instance constructInstance(HttpExchange exchange, Instances instances) throws Exception {
 		Map<String, String> args = parseQuery(exchange.getRequestURI().getQuery());
 		Instance inst = new Instance(8);
 		inst.setDataset(instances);
-		inst.setValue(1, Double.valueOf(args.get("startingbidpercent")));
 		inst.setValue(2, Double.valueOf(args.get("sellerclosepercent")));
 		inst.setValue(3, Double.valueOf(args.get("averageprice")));
 		inst.setValue(4, Integer.valueOf(args.get("auctioncount")));

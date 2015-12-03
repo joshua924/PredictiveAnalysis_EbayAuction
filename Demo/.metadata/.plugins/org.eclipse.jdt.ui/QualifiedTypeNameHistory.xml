@@ -13,9 +13,17 @@
 <fullyQualifiedTypeName name="weka.filters.Filter"/>
 <fullyQualifiedTypeName name="weka.classifiers.Classifier"/>
 <fullyQualifiedTypeName name="edu.nyu.sz1288.IOHandler"/>
-<fullyQualifiedTypeName name="weka.classifiers.functions.Logistic"/>
-<fullyQualifiedTypeName name="weka.core.Instances"/>
 <fullyQualifiedTypeName name="weka.filters.unsupervised.attribute.Discretize"/>
-<fullyQualifiedTypeName name="weka.core.Instance"/>
+<fullyQualifiedTypeName name="java.net.InetSocketAddress"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="edu.nyu.sz1288.QueryHandler"/>
+<fullyQualifiedTypeName name="com.sun.net.httpserver.Headers"/>
+<fullyQualifiedTypeName name="weka.core.Instance"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="weka.core.Instances"/>
+<fullyQualifiedTypeName name="weka.classifiers.functions.LinearRegression"/>
+<fullyQualifiedTypeName name="edu.nyu.sz1288.Filtering"/>
+<fullyQualifiedTypeName name="weka.classifiers.functions.Logistic"/>
 </qualifiedTypeNameHistroy>

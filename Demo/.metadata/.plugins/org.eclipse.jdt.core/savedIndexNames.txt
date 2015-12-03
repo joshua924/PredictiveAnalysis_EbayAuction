@@ -16,5 +16,4 @@ INDEX VERSION 1.127+/Users/shuangzhou/Documents/Courses/Predictive_Analytics/Pre
 3886640424.index
 219212267.index
 325061775.index
-4140730806.index
 941005215.index

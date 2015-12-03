@@ -2,3 +2,4 @@
 report/*.out
 report/*.log
 report/*.aux
+/Demo/.metadata

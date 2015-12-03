@@ -12,16 +12,15 @@
         $scope.success = false;
         $scope.start = function() {
             $http.post("http://localhost:9999?"
-                + "startingbidpercent=" + $scope.item.startingbidpercent
-                + "&sellerclosepercent=" + $scope.item.sellerclosepercent
+                + "sellerclosepercent=" + $scope.item.sellerclosepercent
                 + "&averageprice=" + $scope.item.averageprice
                 + "&medianprice=" + $scope.item.medianprice
                 + "&auctioncount=" + $scope.item.auctioncount
                 + "&sellerauctioncount=" + $scope.item.sellerauctioncount
                 + "&auctionsalecount=" + $scope.item.auctionsalecount
             ).success(function(data) {
-                $scope.class = (data.startsWith("Sale"));
-                $scope.percent = data.split("\t")[1];
+                $scope.result = data.split("\t");
+                $scope.class = $scope.result[2] >= 0.5;
                 $scope.success = true;
             }
             ).error(function(data) {
@@ -38,10 +37,6 @@
     <h1 class="panel-heading">Try Your Auction Item</h1><br>
     <form ng-submit="start()">
     <table style="width:100%" class="table table-striped">
-        <tr>
-            <td>Starting Bid Percent:</td>
-            <td><input type="number" class="form-control" name="startingbidpercent" step="0.00001" ng-model="item.startingbidpercent" size="25" min="0" required/></td>
-        </tr>
         <tr>
             <td>Seller Close Percent:</td>
             <td><input type="number" class="form-control" name="sellerclosepercent" step="0.00001" ng-model="item.sellerclosepercent" size="25" min="0" max="1" required/></td>
@@ -68,8 +63,6 @@
             <td><input type="number" class="form-control" name="sellerauctioncount" ng-model="item.sellerauctioncount" min="0" required /></td>
         </tr>
     </table>
-    
-    <p><i>Tip: please try multiple starting bid percent values to find the optimal.</i></p>
     <br>
     <span class="input-group-btn" align="center">
         <button id="start" class="btn btn-primary" type="submit">See Results</button>
@@ -78,16 +71,34 @@
     <br><br>
     <table id="result" align="center" style="width:40%" class="table table-striped">
         <tr>
-            <td><label>Can you sell this item?</label></td>
+            <td><label>Best starting price</label></td>
+            <td><span ng-show="success" style="margin-left:20px">
+            <b><i>{{result[0] * item.averageprice | number : 2}}</i></b>
+            </span></td>
+        </tr>
+        <tr>
+            <td><label>Probability of selling this item</label></td>
+            <td><span ng-show="success" style="margin-left:20px">
+            <b><i>{{result[2] | number : 2}}</i></b>
+            </span></td>
+        </tr>
+        <tr>
+            <td><label>Safe auction</label></td>
             <td><span ng-show="success" style="margin-left:20px">
                 <img style="height:24px; width:24px" ng-show="class" ng-src="image/sold.jpeg" />
                 <img style="height:24px; width:24px" ng-hide="class" ng-src="image/nosold.jpeg" />
             </span></td>
         </tr>
         <tr>
-            <td><label>Predicted final price (nomalized):</label></td>
+            <td><label>Predicted price if item sold</label></td>
             <td><span ng-show="success" style="margin-left:20px">
-            <b><i>{{percent | number : 3}}</i></b>
+            <b><i>{{result[3] * item.averageprice | number : 2}}</i></b>
+            </span></td>
+        </tr>
+        <tr>
+            <td><label>Expected gross profit:</label></td>
+            <td><span ng-show="success" style="margin-left:20px">
+            <b><i>{{result[1] * item.averageprice | number : 2}}</i></b>
             </span></td>
         </tr>
     </table>
