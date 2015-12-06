@@ -30,4 +30,12 @@ public class Filtering {
 		}
 		return newData;
 	}
+	
+	public static void logAttributes(Instances data) {
+		for(int i=0; i<data.numInstances(); i++) {
+			Instance instance = data.instance(i);
+			instance.setValue(4, Math.log(instance.value(4)));
+			instance.setValue(7, Math.log(instance.value(7)));
+		}
+	}
 }

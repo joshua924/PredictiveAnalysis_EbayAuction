@@ -21,11 +21,20 @@ public class QueryHandler implements HttpHandler {
 	private Logistic logistic;
 	private LinearRegression linear;
 	private Instances instances, copyInstances;
-	private static final double MIN = 0.1, MAX = 5.0;
+	private static final double MIN = 0.1, MAX = 10.0;
 
+	public Instances getInstances() {
+		return copyInstances;
+	}
+	
+	public LinearRegression getLinearModel() {
+		return linear;
+	}
+	
 	public QueryHandler() throws Exception {
 		System.out.println("Reading in instances ..");
 		instances = IOHandler.readData("data/SelectedFeatureData.csv");
+		Filtering.logAttributes(instances);
 		copyInstances = new Instances(instances);
 		
 		System.out.println("Building Logistic classifier ..");
@@ -54,8 +63,8 @@ public class QueryHandler implements HttpHandler {
 		try {
 			Instance instance = constructInstance(exchange, instances);
 			double[] p = getBestStartingPrice(instance);
-			System.out.println("Probability of sale is " + p[2] + " and price is " + p[3]);
 			String response = p[0] + "\t" + p[1] + "\t" + p[2] + "\t" + p[3];
+			System.out.println(response);
 			OutputStream responseBody = exchange.getResponseBody();
 			responseBody.write(response.getBytes());
 			responseBody.flush();
@@ -66,21 +75,21 @@ public class QueryHandler implements HttpHandler {
 	}
 	
 	private double[] getBestStartingPrice(Instance instance) throws Exception {
-		double bestStartingPrice = -1, bestFinalPrice = Double.MIN_VALUE,
+		double bestStartingPrice = -1, bestExpectedFinalPrice = Double.MIN_VALUE,
 				bestSaleProb = -1, bestPricePercent = -1;
 		for(double i = MIN; i <= MAX; i += 0.01) {
 			instance.setValue(1, i);
-			double tmpBestSaleProb = logistic.distributionForInstance(instance)[1];
-			double tmpBestPricePercent = linear.classifyInstance(instance);
-			double expe = tmpBestSaleProb * tmpBestPricePercent;
-			if(expe > bestFinalPrice) {
+			double tmpSaleProb = logistic.distributionForInstance(instance)[1];
+			double tmpPricePercent = linear.classifyInstance(instance);
+			double expe = tmpSaleProb * tmpPricePercent;
+			if(expe > bestExpectedFinalPrice) {
 				bestStartingPrice = i;
-				bestFinalPrice = expe;
-				bestSaleProb = tmpBestSaleProb;
-				bestPricePercent = tmpBestPricePercent;
+				bestExpectedFinalPrice = expe;
+				bestSaleProb = tmpSaleProb;
+				bestPricePercent = tmpPricePercent;
 			}
 		}
-		return new double[] {bestStartingPrice, bestFinalPrice, bestSaleProb, bestPricePercent};
+		return new double[] {bestStartingPrice, bestExpectedFinalPrice, bestSaleProb, bestPricePercent};
 	}
 
 	private Instance constructInstance(HttpExchange exchange, Instances instances) throws Exception {
@@ -88,11 +97,11 @@ public class QueryHandler implements HttpHandler {
 		Instance inst = new Instance(8);
 		inst.setDataset(instances);
 		inst.setValue(2, Double.valueOf(args.get("sellerclosepercent")));
-		inst.setValue(3, Double.valueOf(args.get("averageprice")));
+		inst.setValue(3, Math.log(Double.valueOf(args.get("averageprice"))));
 		inst.setValue(4, Integer.valueOf(args.get("auctioncount")));
 		inst.setValue(5, Integer.valueOf(args.get("auctionsalecount")));
 		inst.setValue(6, Integer.valueOf(args.get("sellerauctioncount")));
-		inst.setValue(7, Double.valueOf(args.get("medianprice")));
+		inst.setValue(7, Math.log(Double.valueOf(args.get("medianprice"))));
 		return inst;
 	}
 	

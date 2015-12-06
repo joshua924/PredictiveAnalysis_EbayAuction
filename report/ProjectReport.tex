@@ -6,13 +6,7 @@
 \renewcommand*\rmdefault{ppl}
 \graphicspath{ {images/} }
 
-
 \title{Predicting The Best Starting Price for Ebay Auctions}
-
-\articletype{Course Project Milestone 2: Prediction on Item sale} % Research Article, Review Article, Communication, Erratum
-
-
-
 
 \author{Jiacheng~Liao\inst{1},
         Yi~Wan\inst{1},
@@ -20,24 +14,20 @@
         Zhaoyin~Zhu\inst{2}
        }
 
-%\shortauthor{F. Author, S. Author}
-
 \institute{\inst{1}
            Department of Computer Science, New York University, New York, NY 10012, USA
            \inst{2}
            Division of Biostatistics, NYU School of Medicine, New York, NY 10016, USA
           }
 
-\abstract{Online auctions are one of the most popular methods to buy and sell items on the internet. With more than 100 million active users globally, eBay is the world’s largest online marketplace, where anyone can buy and sell anything. In order to successfully selling products on ebay, a reasonable starting price does not only determine whether the product will be sold or not but also affects the profit you can make from the transaction. In this project, we use the historical auction data collected from eBay from April 2013 to the first week of May 2013 which contains information about 296,048 successful and unsuccessful auctions. Different statistical models and machine learning algorithms will be utilized to study online auction patterns and predict the starting price that maximizes profits. Furthermore, we will compare the performance of different methods and summarize the pros and cons in different situations.
+\abstract{Online auctions are one of the most popular methods to buy and sell items on the internet. With more than 100 million active users globally, eBay is the world’s largest online marketplace, where anyone can buy and sell anything. In order to successfully selling products on Ebay, a reasonable starting price does not only determine whether the product will be sold or not but also affects the profit you can make from the transaction. In this project, we use the historical auction data collected from eBay from April 2013 to the first week of May 2013 which contains information about 296,048 successful and unsuccessful auctions. Different statistical models and machine learning algorithms will be utilized to study online auction patterns and predict the starting price that maximizes profits. Furthermore, we will compare the performance of different methods and summarize the pros and cons in different situations.
 }
 
 \keywords{Ebay Auction \*\ Predictive Analytics \*\ Data Mining}
 
-%\msc{XXXXX, YYYYY}
-
 \begin{document}
 \maketitle
-%\baselinestretch{2}
+
 \section{Introduction (Data and Business Understanding) }
 
 EBay is the world’s largest marketplace for sports autographs, the vast majority of the site’s membership uses it to buy and/or sell items via auction format. The ability to provide a method to estimate auction sale prices is desirable to this community. Members of most communities related to collectibles have reported they most often try to predict how much an auction would sell for by performing a search for item and manually calculating the average sales price. In this project, our first objective is to determine whether an auction listing will result in a sale. In addtion, we aim to predict the final sales price as well as the best starting price using data mining techniques.
@@ -47,21 +37,14 @@ EBay is the world’s largest marketplace for sports autographs, the vast majori
 
 Data Preparation is an crucial and time-consuming part of our data mining project. It involves selecting data to include, cleaning data to improve data quality, constructing new data that may be required, integrating multiple data sets, and formatting data. We first preprocessed the downloaded data sets using shell scripts. To gain more experience on feature selection, we have performed the selection procedure on all three tools used in the class, RapidMiner, Weka and R. With different algorithms and parameters, we get slightly different but generally consistent results. 
 
-\subsection*{Data Preprocessing}
+\subsection{Data Preprocessing}
 Before any data can be used for later feature reduction and selection, we preprocessed our data sets. Here the tool we use is shell scripts. Initially, the raw data consists of training sets and test sets. Since we intend to do cross-validation on the whole data set, we merge all the separate data sets as one complete sets. Then we carefully go through all the data attributes and deleted all that obviously contain meaningless or irrelevant information to our analysis, such as ebayID, sellerName, etc. In addition, some attributes with ambiguous meanings are also discarded. 
 
 
 \subsection{Feature Selection Using Weka}
-First, we perform feature selection in Weka. To enable Weka to better handle the data, the first step is establishing a nominal class label. Below is a snapshot of the method we use here to discretize the class field here, which is originally a numeric type with value 0 and 1.
-
-{\centering
-    \vspace{3 mm}
-    \includegraphics[scale=0.4]{weka-discretize_label_column.png}
-    \par
-}
-
-
-Two algorithms are used in Weka: Information Gain and Feature Subset Selection. We first used Information Gain Algortihm and the result is as below. According to the information gain results we have, if we set the entropy threshold to 0.95, we will need the top 8 features.
+First, we perform feature selection in Weka. To enable Weka to better handle the data, the first step is establishing a nominal class label. Weka comes with an unsupervised discretization method that allows users to discretize attributes, and after applying it to the class field in our dataset, the originally numeric type with value 0 and 1 becomes nominal labels ``0" and ``1".\\
+\\
+For feature selection, two algorithms are used in Weka: Information Gain and Feature Subset Selection. We first used Information Gain Algorithm and the result is as below. According to the information gain results we have, if we set the entropy threshold to 0.95, we will need the top 8 features.
 
 {\centering
     \vspace{3 mm}
@@ -77,15 +60,15 @@ Using the number of features obtained above, we set the number of features to 8 
     \par
 }
 
-
 \subsection{Feature Selection Using R}
-The caret R package provides tools automatically report on the relevance and importance of attributes in your data and even select the most important features for you. Here we perform three different feature selection method on our dataset, namely entropy based filter, Chi-square based filter and Correlation based filter. We apply all three filters to get a better sense of what attributes are more important, and we have the results below.\\
+The caret R package provides tools automatically report on the relevance and importance of attributes in your data and even select the most important features for you. Here we perform three different feature selection method on our dataset, namely entropy based filter, Chi-square based filter and Correlation based filter. We apply all three filters to get a better sense of what attributes are more important, and we have the results below.
+
 \begin{center}
-\includegraphics[scale=0.5]{entropy.png}\\
-\mbox{}\\
-\includegraphics[scale=0.5]{chi-square.png}\hspace*{2em}
-\includegraphics[scale=0.5]{correlation.png}\\
+\includegraphics[scale=0.3]{entropy.png}\hspace*{2em}
+\includegraphics[scale=0.3]{chi-square.png}\hspace*{2em}
+\includegraphics[scale=0.3]{correlation.png}\\
 \end{center}
+
 As a result, we summarize all the three different methods and compute average rank for each attribute. The result is presented in table \ref{r-rank}.
 
 
@@ -229,7 +212,7 @@ In RapidMiner, models we tried include Naive Bayes, Random Forest, Decision Tree
 \\
 A decision tree is a decision support tool that uses a tree-like graph or model of decisions and their possible consequences, including chance event outcomes, resource costs, and utility. The decision tree algorithm comes with a ``depth" parameter and a evaluation algorithm. For the evaluation algorithm, we used Gain Ratio.\\
 \\
-Random forests are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. Random forests correct for decision trees' habit of overfitting to their training set. See table \ref{rm-model} for all results.\\ 
+Random forests are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. Random forests correct for decision trees' habit of overfitting to their training set. See table \ref{rm-model} for all results.
 
 \begin{table}[h]
 \centering
@@ -242,13 +225,13 @@ Model Name  & F measure \\ \midrule
 \hline
 Naive Bayes & 0.629   \\
 \hline
-Decision Tree (Depth = 5) & 0.8223\\
+Decision Tree (Depth = 5) & 0.6223\\
 \hline
-Decision Tree (Depth = 10) & 0.8334 \\
+Decision Tree (Depth = 10) & 0.6334 \\
 \hline
-Decision Tree (Depth = 50) & 0.8334 \\
+Decision Tree (Depth = 50) & 0.6334 \\
 \hline
-Random Forest & 0.7912 \\ \bottomrule
+Random Forest & 0.6112 \\ \bottomrule
 \hline
 \end{tabular}
 \end{table}
@@ -290,7 +273,7 @@ AuctionMedianPrice & 3.194e-03  \\ \bottomrule
 
 To interpret the table, let's say $e_1, e_2, ..., e_n$ are $n$ entries (features), and $c_0, c_1, c_2, ..., c_n$ are $n$ corresponding coefficients with $c_0$ being the intercept, or constant, in this formula, computed by the algorithm. Then, for a given instance $x$, the label of this instance can be generated with:
 $$L(x) = c_0 + \sum_{i=1}^{n}e_i\times c_i$$
-We can't obtain much information by simply looking at the expression, although some may wonder the importance of each feature is indicated by the absolute value of each coefficient. That's not true in most cases, as all features have different magnitudes and coefficients play the role as mitigator among all those features. We evaluate the model, and the F measure reaches 0.89.\\
+We can't obtain much information by simply looking at the expression, although some may wonder the importance of each feature is indicated by the absolute value of each coefficient. That's not true in most cases, as all features have different magnitudes and coefficients play the role as mitigator among all those features. We evaluate the model, and the F measure reaches 0.674.\\
 \\
 For K-NN, we try to run it with different number of neighbors in order to find the ``magic number", and results are presented in table \ref{r-knn}.
 
@@ -327,65 +310,130 @@ Number of Neighbors  & F measure \\ \midrule
 It appears that when the number of neighbors is from 5 to 10, the accuracy achieves the highest, and as the number keeps growing, the performance actually goes down a little, although the loss is very minimal. Therefore we try all values from 5 to 10 and we find that ``7" and ``9" out-perform other values. Considering the fact that the smaller the number of neighbors is, the (slightly) faster will the algorithm runs, we will choose ``7" as the parameter for K-NN model in this project.\\
 
 \subsubsection{Final Model Selection}
-Considering all models we've tried, we decide to go with Logistic Regression model. It performs the most stably and can achieve a near 90 percent accuracy according to our cross-validation result from R.
+Considering all models we've tried, we decide to go with Logistic Regression model. It performs the most stably and achieves the highest percent accuracy according to our cross-validation result from R.\\
 
 \subsection{Modeling For Best Starting Price}
-To be finished
-
-
-\section{Team Members Responsibilities and Plan for the Next Phase}
-
-Right now, all group members are actively participate in the project. An approximate list of each team members' responsibility is:
+For better flexibility and simplicity of debugging, we decide to adopt R for the whole process. For the choice of model, Linear Regression fits almost perfectly into our requirement. Motivations that drive us to this model includes:
 \begin{itemize}
-\item Jiacheng Liao: data preprocessing, report write-up
-\item Yi Wan: data preprocessing, feature selection in RapidMiner
-\item Shuang Zhou: data preprocessing, feature selection in Weka
-\item Zhaoyin Zhu: data preprocessing, feature selection in R
+\item As the final price is a continuous numerous value, any classification algorithm that deals with discrete values require extra work of partitioning.
+\item Linear Regression provides a very user-friendly representation of the model that can leverage some insights of the data.
+\item The final price field has a very wide range of values, it will be very hard to distribute instances evenly and maintain similar width of each class at the same time.
 \end{itemize}
 
-For the next phase,we intend to build different models to make predictions. We plan to apply various statistical machine learning model and use cross-validation to test each model. Also, we would study some economic aspects of the auction theory to help us build the model.
+One particularly interesting thing we do before applying the model to our dataset is to normalize the data. For any continuous covariants in the input to Logistic Regression or Linear Regression, the models expect the a Normal Distribution of it, thus we apply a log transformation on the dataset. The log transformation can be used to make highly skewed distributions less skewed. This can be valuable both for making patterns in the data more interpretable and for helping to meet the assumptions of inferential statistics. After investigation of ``skewed distributed" fields, we decide to apply a log transformation on Average Price and Median Price. The transformations are illustrated below.\\
 
+{\centering
+    AveragePrice and LoggedAveragePrice\hspace*{8em} MedianPrice and LoggedMedianPrice
+    \vspace{3 mm}
+    \includegraphics[scale=0.4]{ap.png}\hspace*{2em}
+    \includegraphics[scale=0.4]{amp.png}
+    \par
+}
+
+After transformation, both originally very skewed fields becomes approximately normal distributed. Therefore, now we can apply Linear Regression on our dataset. Results are shown in \ref{r-linear}:
+\footnote{Actually, we adopted log transformation in our final version of Logistic Regression as well, and we will use it in our deployment. }
+\begin{table}[h]
+\centering
+\caption{Coefficient Table for Linear Regression}
+\label{r-linear}
+\begin{tabular}{@{}|l|r|@{}}
+\toprule
+\hline
+Entry Name  & Coefficient \\ \midrule
+\hline
+Intercept & -1.165e-01   \\
+\hline
+StartingBidPercent & 1.000e+00 \\
+\hline
+SellerClosePercent & 6.523e-01  \\
+\hline
+LoggedAvgPrice & -2.689e-03 \\
+\hline
+AuctionCount & -1.469e-04   \\
+\hline
+AuctionSaleCount & 5.276e-04 \\
+\hline
+SellerAuctionCount & 9.239e-06   \\
+\hline
+LoggedAuctionMedianPrice & 2.041e-02  \\ \bottomrule
+\hline
+\end{tabular}
+\end{table}
+
+And as always, we use cross-validation for testing the performance. To show the effectiveness of the log transformation, we run two evaluations on the model before and the model after.  Results can be found in \ref{comp}.
+
+\begin{table}[h]
+\centering
+\caption{Performance for Linear Regression}
+\label{comp}
+\begin{tabular}{@{}|l|c|c|@{}}
+\toprule
+\hline
+    & Model Without Log  & Model With Log \\ \midrule
+\hline
+  Bias  &  0.161 & 0.161  \\ 
+\hline
+  Standard Deviation  &  0.0015  &  0. 0017 \\ 
+\hline
+  Mean Square Error    &  0.139  &  0.138  \\
+\bottomrule \hline
+\end{tabular}
+\end{table}
+
+Based solely on these results, the model with log transformation only performs slightly better than the model we have before, but we find it particularly useful when applied on test data. We will describe it in the next section.
 
 \section{Evaluation}
-In this section, we will use the test dataset which contains 7460 auctions ending in first week of May 2013 to evaluate the models we obtained from previous sections. \\
+We've built our model based on a dataset containing auctions ending in April 2013, and in this section, we will use the test dataset which contains 7460 auctions ending in first week of May 2013 to evaluate the models we obtained from previous sections. \\
 \\
-For logistic model, we use precision, recall and F-measurement to assess the performance. Precision (also called positive predictive value) is the fraction of retrieved instances that are relevant, recall (also known as sensitivity) is the fraction of relevant instances that are retrieved and F-measurement = 2* (precision*recall)/(precision+recall). The results with test dataset is shown in table \ref{logit}\\
-\\
+For logistic model, we use precision, recall and F-measurement to assess the performance. Precision (also called positive predictive value) is the fraction of retrieved instances that are relevant, recall (also known as sensitivity) is the fraction of relevant instances that are retrieved and F measure $f$ is defined as 
+$$f=2\times\frac{Precision\times Recall}{Precision+Recall}$$
+The results with test dataset is shown in table \ref{logit}.
+
 \begin{table}[h]
 \centering
 \caption{Evaluation of logistic model with test dataset}
 \label{logit}
-\begin{tabular}{@{}|l|l|@{}}
+\begin{tabular}{@{}|l|l|l|@{}}
 \toprule
 \hline
-Precision  & 0.858 \\ \midrule
+  & Without Log & With Log \\
 \hline
-Recall & 0.28  \\
+Precision  & 0.848 & 0.858 \\ \midrule
 \hline
-F-measurement  & 0.654\\ \bottomrule
+Recall  & 0.526 & 0.528  \\
 \hline
-\end{tabular}
-\end{table}
-For simple linear model, we used absolute bias to represent the accuracy and standard deviation to represent the precision of prediction on test dataset. Mean square error (MSE) = $\text{Bias}^2$ + Variance was reported as well to balance bias and variance. The results with test dataset is shown in table \ref{lm}\\
-\\
-\begin{table}[h]
-\centering
-\caption{Evaluation of simple linear model with test dataset}
-\label{lm}
-\begin{tabular}{@{}|l|l|@{}}
-\toprule
-\hline
-Bias  & 0.152 \\ \midrule
-\hline
-Standard Deviation & 0.0016  \\
-\hline
-MSE  & 0.266\\ \bottomrule
+F-measurement  &  0.643 & 0.654\\ \bottomrule
 \hline
 \end{tabular}
 \end{table}
 
-\section{Deployment (ToDo)}
-Deployment involves consolidating the findings, determining what might be deployed and planning the monitoring and maintenance required to keep the model relevant.
+
+For simple linear model, we used absolute bias to represent the accuracy and standard deviation to represent the precision of prediction on test dataset. Mean square error (MSE) = $\text{Bias}^2$ + Variance was reported as well to balance bias and variance. The results with test dataset is shown in table \ref{lm}.
+
+\begin{table}[h]
+\centering
+\caption{Evaluation of simple linear model with test dataset}
+\label{lm}
+\begin{tabular}{@{}|l|l|l|@{}}
+\toprule
+\hline
+  & Without Log & With Log \\
+\hline
+Bias  & 0.151  & 0.152 \\ \midrule
+\hline
+Standard Deviation  &  0.0017 & 0.0016  \\
+\hline
+MSE  &  0.330  & 0.266\\ \bottomrule
+\hline
+\end{tabular}
+\end{table}
+
+Here we can observe a big performance boost when we use log transformation, with a 21\% MSE rate drop.
+
+\section{Deployment}
+After we land on our models, we decide to deploy a Java backed WebPage to provide an interactive service. The system allows users to query about their items for prediction. Users provide necessary information and AngularJS and Bootstrap are used for web design, and requests are passed to the server for realtime classification. The backend starts with a model trained with training data, and simply classifies every instance coming in.\\
+\\
+For algorithm implementations, we use Weka JAR files, which can do basically everything Weka itself can do. The server hosts on CIMS machines and can be monitored remotely.
 
 \section{Conclusion (ToDo)}
 TODO
