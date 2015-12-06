@@ -217,12 +217,12 @@ Model Name  & F measure \\ \midrule
 \hline
 Naive Bayes & 0.639   \\
 \hline
-Logistic Regression  & 0.837 \\ \bottomrule
+Logistic Regression  & 0.674 \\ \bottomrule
 \hline
 \end{tabular}
 \end{table}
 
-Obviously Logistic Regression model works much better than NB model for this dataset, with a F measure of 0.837. But we will continue to examine different models with other tools.\\
+Obviously Logistic Regression model works better than NB model for this dataset, with a F measure of 0.674. But we will continue to examine different models with other tools.\\
 
 \subsubsection{Modeling in RapidMiner}
 In RapidMiner, models we tried include Naive Bayes, Random Forest, Decision Tree, Logistic Regression, Neural Network. Some of the models can't finish in reasonable time due to the RapidMiner design that enforce us to add ``Performance" module into the process, which noticeably increases the running time. So as a result, we only present Naive Bayes, Random Forest, and Decision Tree models here. \\
@@ -269,23 +269,21 @@ Just to gain experience on as many tools as possible, we also try to build our m
 \hline
 Entry Name  & Coefficient \\ \midrule
 \hline
-Intercept & -1.760e+00   \\
+Intercept & -1.646e+00   \\
 \hline
-StartingBidPercent & -8.886e-01 \\
+StartingBidPercent & -1.120e+00 \\
 \hline
-SellerClosePercent & 4.829e+00  \\
+SellerClosePercent & 4.857e+00  \\
 \hline
-StartingBid & -9.735e-03  \\
+AvgPrice & -4.210e-04 \\
 \hline
-AvgPrice & -9.735e-05 \\
+AuctionCount & -1.623e-03   \\
 \hline
-AuctionCount & -1.670e-03   \\
+AuctionSaleCount & 5.103e-03 \\
 \hline
-AuctionSaleCount & 5.457e-03  \\
+SellerAuctionCount & 2.008e-05   \\
 \hline
-SellerAuctionCount & 1.328e-05   \\
-\hline
-AuctionMedianPrice & 9.477e-03  \\ \bottomrule
+AuctionMedianPrice & 3.194e-03  \\ \bottomrule
 \hline
 \end{tabular}
 \end{table}
@@ -348,9 +346,43 @@ Right now, all group members are actively participate in the project. An approxi
 For the next phase,we intend to build different models to make predictions. We plan to apply various statistical machine learning model and use cross-validation to test each model. Also, we would study some economic aspects of the auction theory to help us build the model.
 
 
-\section{Evaluation (ToDo)}
-Evaluation involves evaluating the results against the business success criteria defined at the beginning of the project.
-
+\section{Evaluation}
+In this section, we will use the test dataset which contains 7460 auctions ending in first week of May 2013 to evaluate the models we obtained from previous sections. \\
+\\
+For logistic model, we use precision, recall and F-measurement to assess the performance. Precision (also called positive predictive value) is the fraction of retrieved instances that are relevant, recall (also known as sensitivity) is the fraction of relevant instances that are retrieved and F-measurement = 2* (precision*recall)/(precision+recall). The results with test dataset is shown in table \ref{logit}\\
+\\
+\begin{table}[h]
+\centering
+\caption{Evaluation of logistic model with test dataset}
+\label{logit}
+\begin{tabular}{@{}|l|l|@{}}
+\toprule
+\hline
+Precision  & 0.858 \\ \midrule
+\hline
+Recall & 0.28  \\
+\hline
+F-measurement  & 0.654\\ \bottomrule
+\hline
+\end{tabular}
+\end{table}
+For simple linear model, we used absolute bias to represent the accuracy and standard deviation to represent the precision of prediction on test dataset. Mean square error (MSE) = $\text{Bias}^2$ + Variance was reported as well to balance bias and variance. The results with test dataset is shown in table \ref{lm}\\
+\\
+\begin{table}[h]
+\centering
+\caption{Evaluation of simple linear model with test dataset}
+\label{lm}
+\begin{tabular}{@{}|l|l|@{}}
+\toprule
+\hline
+Bias  & 0.152 \\ \midrule
+\hline
+Standard Deviation & 0.0016  \\
+\hline
+MSE  & 0.266\\ \bottomrule
+\hline
+\end{tabular}
+\end{table}
 
 \section{Deployment (ToDo)}
 Deployment involves consolidating the findings, determining what might be deployed and planning the monitoring and maintenance required to keep the model relevant.
