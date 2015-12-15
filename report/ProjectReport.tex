@@ -311,6 +311,30 @@ Number of Neighbors  & F measure \\ \midrule
 
 It appears that when the number of neighbors is from 5 to 10, the accuracy achieves the highest, and as the number keeps growing, the performance actually goes down a little, although the loss is very minimal. Therefore we try all values from 5 to 10 and we find that ``7" and ``9" out-perform other values. Considering the fact that the smaller the number of neighbors is, the (slightly) faster will the algorithm runs, we will choose ``7" as the parameter for K-NN model in this project.\\
 
+
+\subsubsection{Modeling in Apache Mahout}
+We also used Apache Mahout library for HDFS to predict the whether a given item can be sold or not. Apache Mahout is an open source project which provides scalable machine learning algorithms. Mahout can be run on standalone machine(single machine) and cluster mode. 
+
+"Random forests is a notion of the general technique of random decision forests[1][2] that are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. Random decision forests correct for decision trees' habit of overfitting to their training set".\footnote{https://en.wikipedia.org/wiki/Random\_forest}
+
+\begin{table}[h]
+\centering
+\caption{Random Forest Result by Mahout}
+\label{weka-model}
+\begin{tabular}{@{}|l|l|@{}}
+\toprule
+\hline
+Precision  & 0.857  \\ \midrule
+\hline
+Recall & 0.685  \\
+\hline
+F-measure  & 0.761 \\ \bottomrule
+\hline
+\end{tabular}
+\end{table}
+
+Our experience runs on Cloudera CentOS. We the the random forest algorithm to build 100 trees which uses the partial implementations. Each tree is built from 5 randomly chosen attribute per node. Partition size is is 187423. We test the random forest model using Mahout’s split validation, which chose 10\% data as test data. 
+
 \subsubsection{Final Model Selection}
 Considering all models we've tried, we decide to go with Logistic Regression model. It performs the most stably and achieves the highest percent accuracy according to our cross-validation result from R.\\
 
@@ -373,7 +397,7 @@ And as always, we use cross-validation for testing the performance. To show the 
 \hline
     & Model Without Log  & Model With Log \\ \midrule
 \hline
-  Bias  &  0.161 & 0.161  \\ 
+  Bias  &  0.161 & 0.159  \\ 
 \hline
   Standard Deviation  &  0.0015  &  0. 0017 \\ 
 \hline
@@ -421,7 +445,7 @@ For simple linear model, we used absolute bias to represent the accuracy and sta
 \hline
   & Without Log & With Log \\
 \hline
-Bias  & 0.151  & 0.152 \\ \midrule
+Bias  & 0.151  & 0.148 \\ \midrule
 \hline
 Standard Deviation  &  0.0017 & 0.0016  \\
 \hline
