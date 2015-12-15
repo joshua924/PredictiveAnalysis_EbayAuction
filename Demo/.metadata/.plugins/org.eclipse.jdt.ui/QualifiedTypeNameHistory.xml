@@ -26,4 +26,5 @@
 <fullyQualifiedTypeName name="edu.nyu.sz1288.Filtering"/>
 <fullyQualifiedTypeName name="weka.classifiers.functions.Logistic"/>
 <fullyQualifiedTypeName name="edu.nyu.sz1288.QueryHandler"/>
+<fullyQualifiedTypeName name="snlp.sentiment.BOW_BI"/>
 </qualifiedTypeNameHistroy>

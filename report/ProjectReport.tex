@@ -315,7 +315,7 @@ It appears that when the number of neighbors is from 5 to 10, the accuracy achie
 \subsubsection{Modeling in Apache Mahout}
 We also used Apache Mahout library for HDFS to predict the whether a given item can be sold or not. Apache Mahout is an open source project which provides scalable machine learning algorithms. Mahout can be run on standalone machine(single machine) and cluster mode. 
 
-"Random forests is a notion of the general technique of random decision forests[1][2] that are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. Random decision forests correct for decision trees' habit of overfitting to their training set".\footnote{https://en.wikipedia.org/wiki/Random\_forest}
+Random forests is a notion of the general technique of random decision forests that are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. Random decision forests correct for decision trees' habit of overfitting to their training set\cite{randomforest}.
 
 \begin{table}[h]
 \centering
@@ -333,12 +333,12 @@ F-measure  & 0.761 \\ \bottomrule
 \end{tabular}
 \end{table}
 
-Our experience runs on Cloudera CentOS. We the the random forest algorithm to build 100 trees which uses the partial implementations. Each tree is built from 5 randomly chosen attribute per node. Partition size is is 187423. We test the random forest model using Mahout’s split validation, which chose 10\% data as test data. 
+Our experience runs on Cloudera CentOS. We the the random forest algorithm to build 100 trees which uses the partial implementations. Each tree is built from 5 randomly chosen attribute per node. Partition size is is 187423. We test the random forest model using Mahout’s split validation, which chose 10\% data as test data. \\
 
 \subsubsection{Final Model Selection}
-Considering all models we've tried, we decide to go with Logistic Regression model. It performs the most stably and achieves the highest percent accuracy according to our cross-validation result from R.\\
+Considering all models we've tried, we decide that Random Forest model and Logistic Regression model are the two best models for our dataset. Random Forest performs the most stably and achieves the highest F measure according to our cross-validation result from R, however, Logistic Regression has its advantage in providing a probability of the item being sold or not. In later sections, we are going to integrate the results from this model to provide an overall estimation of items. Therefore, in consideration of future uses, we decide to adopt Logistic Regression as our model to predict whether an item can be sold or not.\\
 
-\subsection{Modeling For Best Starting Price}
+\subsection{Modeling For Final Price}
 For better flexibility and simplicity of debugging, we decide to adopt R for the whole process. For the choice of model, Linear Regression fits almost perfectly into our requirement. Motivations that drive us to this model includes:
 \begin{itemize}
 \item As the final price is a continuous numerous value, any classification algorithm that deals with discrete values require extra work of partitioning.
@@ -406,7 +406,13 @@ And as always, we use cross-validation for testing the performance. To show the 
 \end{tabular}
 \end{table}
 
-Based solely on these results, the model with log transformation only performs slightly better than the model we have before, but we find it particularly useful when applied on test data. We will describe it in the next section.
+Based solely on these results, the model with log transformation only performs slightly better than the model we have before, but we find it particularly useful when applied on test data. We will describe it in the next section.\\
+
+\subsection{Modeling for Best Starting Price}
+After the establishment of two models, we now build a model to integrate them and find the optimum starting price. To measure the seller's expected gain given a starting price $p$, we define that
+$$E_p = Prob(sold | p) \times Price(p)$$
+where $Prob(sold | p)$ is the probability of the item being sold (i.e. the result from our Logistic model), and $Price(p)$ is the predicted price of this item (i.e. the result from our Linear model). 
+With this model, we can keep a balance between these two models. For instance, when the starting price goes up, the Linear model would yield a higher profit, but the probability of successfully selling it would decrease, thus both changes will be reflected in the product.\\
 
 \section{Evaluation}
 We've built our model based on a dataset containing auctions ending in April 2013, and in this section, we will use the test dataset which contains 7460 auctions ending in first week of May 2013 to evaluate the models we obtained from previous sections. \\
@@ -454,15 +460,15 @@ MSE  &  0.330  & 0.266\\ \bottomrule
 \end{tabular}
 \end{table}
 
-Here we can observe a big performance boost when we use log transformation, with a 21\% MSE rate drop.
+Here we can observe a big performance boost when we use log transformation, with a 21\% MSE rate drop.\\
 
 \section{Deployment}
 After we land on our models, we decide to deploy a Java backed WebPage to provide an interactive service. The system allows users to query about their items for prediction. Users provide necessary information and AngularJS and Bootstrap are used for web design, and requests are passed to the server for realtime classification. The backend starts with a model trained with training data, and simply classifies every instance coming in.\\
 \\
-For algorithm implementations, we use Weka JAR files, which can do basically everything Weka itself can do. The server hosts on CIMS machines and can be monitored remotely.
+For algorithm implementations, we use Weka JAR files, which can do basically everything Weka itself can do. The server hosts on CIMS machines and can be monitored remotely.\\
 
-\section{Conclusion (ToDo)}
-TODO
+\section{Conclusion}
+Online auctions are one of the most popular methods to buy and sell items on the internet. Motivated by mining the relationship between online auction item and profit made, we adopted different machine learning methods on a Ebay auction dataset to predict (1) whether a given item can be sold or not. (2) the final price for a given item. This report first presents feature selection using different approaches, including: R, RapidMiner, Weka. For modeling the selling status of a given item, we tried R, RapidMiner, Weka, and Apache Mahout. Algorithms includes: Naive Bayes, Logistic Regression, Decision Tree, Random Forest, KNN. We compared the performance using F measures. Random Forest turns out to have best performance. However, we choose logistic regression as the final model because logistic regression can provide the probability for the prediction goal, in addition to a simple prediction result. To predict the final prices for a given item, we use Linear Regression in the above tools. The delivered prediction model has 0.266 MSE on test data.
 
 
 \section*{Acknowledgements}
@@ -480,12 +486,11 @@ We are grateful for all the companies and contributors who have made Weka, R and
 
 \bibitem{lecture} Bari, Anasse. Predictive Analytics Course Lecture Notes. 2015 Fall.
 
-\bibitem{r-feature}  Brownlee, Jason. Feature Selection with the Caret R Package. http://machinelearningmastery.com/feature-selection-with-the-caret-r-package/
+\bibitem{r-feature}  Brownlee, Jason. \textit{Feature Selection with the Caret R Package}. \url{http://machinelearningmastery.com/feature-selection-with-the-caret-r-package/}
 
-\bibitem{ebay-auction} Grossman, Jay. Predicting eBay Auction Sales with Machine Learning.
+\bibitem{ebay-auction} Grossman, Jay. Predicting eBay Auction Sales with Machine Learning. \url{http://jaygrossman.com/post/2013/06/10/Predicting-eBay-Auction-Sales-with-Machine-Learning.aspx}
 
-Retrived from http://jaygrossman.com/post/2013/06/10/Predicting-eBay-Auction-Sales-with-Machine-Learning.aspx
-
+\bibitem{randomforest} Wikipedia, Random Forest. \url{https://en.wikipedia.org/wiki/Random\_forest}
 
 \end{thebibliography}
 

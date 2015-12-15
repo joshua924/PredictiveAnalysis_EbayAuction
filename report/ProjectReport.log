@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 DEC 2015 21:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  15 DEC 2015 13:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -381,31 +381,34 @@ Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
 )
-(./ProjectReport.aux)
+(./ProjectReport.aux
+
+LaTeX Warning: Label `weka-model' multiply defined.
+
+)
 \openout1 = `ProjectReport.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 28.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ppl.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 30.
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-Class revtex4 Info: Patching LaTeX tabular. on input line 28.
-Class revtex4 Info: cite was not loaded (OK!) on input line 28.
-Class revtex4 Info: multicol was not loaded (OK!) on input line 28.
+Class revtex4 Info: Patching LaTeX tabular. on input line 30.
+Class revtex4 Info: cite was not loaded (OK!) on input line 30.
+Class revtex4 Info: multicol was not loaded (OK!) on input line 30.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -436,7 +439,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box37
-Package hyperref Info: Link coloring ON on input line 28.
+Package hyperref Info: Link coloring ON on input line 30.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -446,9 +449,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count172
 )
-LaTeX Info: Redefining \ref on input line 28.
-LaTeX Info: Redefining \pageref on input line 28.
-LaTeX Info: Redefining \nameref on input line 28.
+LaTeX Info: Redefining \ref on input line 30.
+LaTeX Info: Redefining \pageref on input line 30.
+LaTeX Info: Redefining \nameref on input line 30.
 
 (./ProjectReport.out) (./ProjectReport.out)
 \@outlinefile=\write3
@@ -460,102 +463,102 @@ LaTeX Info: Redefining \nameref on input line 28.
 \openout4 = `ProjectReport.cej'.
 
 
-Underfull \vbox (badness 10000) detected at line 29
+Underfull \vbox (badness 10000) detected at line 31
  []
 
 
-Overfull \vbox (687.13403pt too high) detected at line 29
+Overfull \vbox (687.13403pt too high) detected at line 31
  []
 
-LaTeX Font Info:    Try loading font information for U+lasy on input line 29.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 31.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 29--29
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 
  []
 
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <11> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 29.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 31.
 \@rulewidth=\dimen134
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <19> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 29.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 29.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 29.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 29.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 29.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 29.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 31.
 Missing character: There is no â in font pplr7t!
 Missing character: There is no € in font pplr7t!
 Missing character: There is no ™ in font pplr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--29
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 
  []
 
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <15> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 31.
-LaTeX Font Info:    Calculating math sizes for size <15> on input line 31.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 33.
+LaTeX Font Info:    Calculating math sizes for size <15> on input line 33.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <15> not available
-(Font)              size <14.4> substituted on input line 31.
+(Font)              size <14.4> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <10.49995> not available
-(Font)              size <10.95> substituted on input line 31.
+(Font)              size <10.95> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 31.
+(Font)              size <7> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <15> not available
-(Font)              size <14.4> substituted on input line 31.
+(Font)              size <14.4> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <10.49995> not available
-(Font)              size <10.95> substituted on input line 31.
+(Font)              size <10.95> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 31.
+(Font)              size <7> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <15> not available
-(Font)              size <14.4> substituted on input line 31.
+(Font)              size <14.4> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <10.49995> not available
-(Font)              size <10.95> substituted on input line 31.
+(Font)              size <10.95> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 31.
+(Font)              size <7> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <15> not available
-(Font)              size <14.4> substituted on input line 31.
+(Font)              size <14.4> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <10.49995> not available
-(Font)              size <10.95> substituted on input line 31.
+(Font)              size <10.95> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <15> not available
-(Font)              size <14.4> substituted on input line 31.
+(Font)              size <14.4> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <10.49995> not available
-(Font)              size <10.95> substituted on input line 31.
+(Font)              size <10.95> substituted on input line 33.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 31.
+(Font)              size <7> substituted on input line 33.
 
 Missing character: There is no â in font pplr7t!
 Missing character: There is no € in font pplr7t!
@@ -564,37 +567,37 @@ Missing character: There is no â in font pplr7t!
 Missing character: There is no € in font pplr7t!
 Missing character: There is no ™ in font pplr7t!
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 40.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 42.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 []
  []
 
 LaTeX Font Info:    Try loading font information for T1+square721exeu on input 
-line 42.
-LaTeX Font Info:    No file T1square721exeu.fd. on input line 42.
+line 44.
+LaTeX Font Info:    No file T1square721exeu.fd. on input line 44.
 
 LaTeX Font Warning: Font shape `T1/square721exeu/m/n' undefined
-(Font)              using `T1/cmr/m/n' instead on input line 42.
+(Font)              using `T1/cmr/m/n' instead on input line 44.
 
 [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 45--48
+Underfull \hbox (badness 10000) in paragraph at lines 47--50
 
  []
 
-<images/weka-InfoGain.png, id=47, 265.99374pt x 190.7125pt>
+<images/weka-InfoGain.png, id=46, 265.99374pt x 190.7125pt>
 File: images/weka-InfoGain.png Graphic file (type png)
 
 <use images/weka-InfoGain.png>
-Package pdftex.def Info: images/weka-InfoGain.png used on input line 51.
+Package pdftex.def Info: images/weka-InfoGain.png used on input line 53.
 (pdftex.def)             Requested size: 159.59747pt x 114.42838pt.
 
-<images/weka-FilteredSubsetWithGreedyStepwise.png, id=49, 275.0275pt x 147.5512
+<images/weka-FilteredSubsetWithGreedyStepwise.png, id=48, 275.0275pt x 147.5512
 5pt>
 File: images/weka-FilteredSubsetWithGreedyStepwise.png Graphic file (type png)
  <use images/weka-FilteredSubsetWithGreedyStepwise.png>
 Package pdftex.def Info: images/weka-FilteredSubsetWithGreedyStepwise.png used 
-on input line 59.
+on input line 61.
 (pdftex.def)             Requested size: 165.01776pt x 88.53142pt.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
@@ -602,57 +605,57 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [2 <./images/weka-InfoGain.png> <./images/weka-FilteredSubsetWithGreedyStepwise
-.png>] <images/entropy.png, id=58, 519.9425pt x 421.575pt>
+.png>] <images/entropy.png, id=57, 519.9425pt x 421.575pt>
 File: images/entropy.png Graphic file (type png)
 
 <use images/entropy.png>
-Package pdftex.def Info: images/entropy.png used on input line 67.
+Package pdftex.def Info: images/entropy.png used on input line 69.
 (pdftex.def)             Requested size: 155.98395pt x 126.47346pt.
- <images/chi-square.png, id=59, 481.8pt x 415.5525pt>
+ <images/chi-square.png, id=58, 481.8pt x 415.5525pt>
 File: images/chi-square.png Graphic file (type png)
 
 <use images/chi-square.png>
-Package pdftex.def Info: images/chi-square.png used on input line 68.
+Package pdftex.def Info: images/chi-square.png used on input line 70.
 (pdftex.def)             Requested size: 144.5411pt x 124.6667pt.
 
-<images/correlation.png, id=60, 491.8375pt x 416.55624pt>
+<images/correlation.png, id=59, 491.8375pt x 416.55624pt>
 File: images/correlation.png Graphic file (type png)
 
 <use images/correlation.png>
-Package pdftex.def Info: images/correlation.png used on input line 69.
+Package pdftex.def Info: images/correlation.png used on input line 71.
 (pdftex.def)             Requested size: 147.55238pt x 124.96783pt.
 
-Overfull \hbox (32.39566pt too wide) in paragraph at lines 67--69
+Overfull \hbox (32.39566pt too wide) in paragraph at lines 69--71
  []|  []|  [] 
  []
 
 [3 <./images/entropy.png> <./images/chi-square.png> <./images/correlation.png>]
-<images/rm-nb-aw.png, id=72, 627.34375pt x 182.6825pt>
+<images/rm-nb-aw.png, id=71, 627.34375pt x 182.6825pt>
 File: images/rm-nb-aw.png Graphic file (type png)
 
 <use images/rm-nb-aw.png>
-Package pdftex.def Info: images/rm-nb-aw.png used on input line 107.
+Package pdftex.def Info: images/rm-nb-aw.png used on input line 109.
 (pdftex.def)             Requested size: 376.40915pt x 109.61034pt.
 
-<images/rm-nb-perf.png, id=73, 629.35126pt x 148.555pt>
+<images/rm-nb-perf.png, id=72, 629.35126pt x 148.555pt>
 File: images/rm-nb-perf.png Graphic file (type png)
 
 <use images/rm-nb-perf.png>
-Package pdftex.def Info: images/rm-nb-perf.png used on input line 115.
+Package pdftex.def Info: images/rm-nb-perf.png used on input line 117.
 (pdftex.def)             Requested size: 377.61366pt x 89.13368pt.
 
-<images/rm-nb-auc.png, id=74, 629.35126pt x 295.1025pt>
+<images/rm-nb-auc.png, id=73, 629.35126pt x 295.1025pt>
 File: images/rm-nb-auc.png Graphic file (type png)
 
 <use images/rm-nb-auc.png>
-Package pdftex.def Info: images/rm-nb-auc.png used on input line 117.
+Package pdftex.def Info: images/rm-nb-auc.png used on input line 119.
 (pdftex.def)             Requested size: 377.61366pt x 177.06285pt.
 
-<images/rm-dec-aw.png, id=75, 623.32875pt x 194.7275pt>
+<images/rm-dec-aw.png, id=74, 623.32875pt x 194.7275pt>
 File: images/rm-dec-aw.png Graphic file (type png)
 
 <use images/rm-dec-aw.png>
-Package pdftex.def Info: images/rm-dec-aw.png used on input line 125.
+Package pdftex.def Info: images/rm-dec-aw.png used on input line 127.
 (pdftex.def)             Requested size: 374.00014pt x 116.83739pt.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
@@ -660,42 +663,42 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [4 <./images/rm-nb-aw.png> <./images/rm-nb-perf.png> <./images/rm-nb-auc.png>]
-<images/rm-dec-perf.png, id=84, 630.355pt x 121.45375pt>
+<images/rm-dec-perf.png, id=83, 630.355pt x 121.45375pt>
 File: images/rm-dec-perf.png Graphic file (type png)
 
 <use images/rm-dec-perf.png>
-Package pdftex.def Info: images/rm-dec-perf.png used on input line 133.
+Package pdftex.def Info: images/rm-dec-perf.png used on input line 135.
 (pdftex.def)             Requested size: 378.21591pt x 72.87279pt.
 
-<images/rm-dec-auc.png, id=85, 628.3475pt x 294.09875pt>
+<images/rm-dec-auc.png, id=84, 628.3475pt x 294.09875pt>
 File: images/rm-dec-auc.png Graphic file (type png)
 
 <use images/rm-dec-auc.png>
-Package pdftex.def Info: images/rm-dec-auc.png used on input line 135.
+Package pdftex.def Info: images/rm-dec-auc.png used on input line 137.
 (pdftex.def)             Requested size: 377.0114pt x 176.4606pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--145
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
 
  []
 
 [5 <./images/rm-dec-aw.png> <./images/rm-dec-perf.png> <./images/rm-dec-auc.png
 >]
-Underfull \hbox (badness 10000) in paragraph at lines 178--183
+Underfull \hbox (badness 10000) in paragraph at lines 180--185
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--183
+Underfull \hbox (badness 10000) in paragraph at lines 180--185
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--183
+Underfull \hbox (badness 10000) in paragraph at lines 180--185
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 185--187
+Underfull \hbox (badness 10000) in paragraph at lines 187--189
 
  []
 
@@ -705,42 +708,42 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 188--191
+Underfull \hbox (badness 10000) in paragraph at lines 190--193
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--191
+Underfull \hbox (badness 10000) in paragraph at lines 190--193
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
+Underfull \hbox (badness 10000) in paragraph at lines 210--211
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 211--216
+Underfull \hbox (badness 10000) in paragraph at lines 213--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 211--216
+Underfull \hbox (badness 10000) in paragraph at lines 213--218
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 239--242
+Underfull \hbox (badness 10000) in paragraph at lines 241--244
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 239--242
+Underfull \hbox (badness 10000) in paragraph at lines 241--244
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 244--245
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
 
  []
 
@@ -753,59 +756,79 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 275--279
+Underfull \hbox (badness 10000) in paragraph at lines 277--281
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 310--311
+Underfull \hbox (badness 10000) in paragraph at lines 312--313
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 313--314
+Missing character: There is no â in font pplr7t!
+Missing character: There is no € in font pplr7t!
+Missing character: There is no ™ in font pplr7t!
+
+Underfull \hbox (badness 10000) in paragraph at lines 336--337
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 318.
+
+Underfull \hbox (badness 10000) in paragraph at lines 339--340
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 344.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 318.
-
-Underfull \hbox (badness 10000) in paragraph at lines 323--324
-
- []
-
-<images/ap.png, id=136, 517.935pt x 488.82625pt>
-File: images/ap.png Graphic file (type png)
- <use images/ap.png>
-Package pdftex.def Info: images/ap.png used on input line 328.
-(pdftex.def)             Requested size: 207.17032pt x 195.52702pt.
-
-<images/amp.png, id=137, 517.935pt x 488.82625pt>
-File: images/amp.png Graphic file (type png)
- <use images/amp.png>
-Package pdftex.def Info: images/amp.png used on input line 329.
-(pdftex.def)             Requested size: 207.17032pt x 195.52702pt.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 344.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 []
  []
 
 [10]
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
 
-Package hyperref Warning: Ignoring empty anchor on input line 334.
+ []
+
+<images/ap.png, id=145, 517.935pt x 488.82625pt>
+File: images/ap.png Graphic file (type png)
+ <use images/ap.png>
+Package pdftex.def Info: images/ap.png used on input line 354.
+(pdftex.def)             Requested size: 207.17032pt x 195.52702pt.
+
+<images/amp.png, id=146, 517.935pt x 488.82625pt>
+File: images/amp.png Graphic file (type png)
+ <use images/amp.png>
+Package pdftex.def Info: images/amp.png used on input line 355.
+(pdftex.def)             Requested size: 207.17032pt x 195.52702pt.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 386--389
+Package hyperref Warning: Ignoring empty anchor on input line 360.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--410
 
  []
 
 [11 <./images/ap.png> <./images/amp.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 434--437
+Underfull \hbox (badness 10000) in paragraph at lines 413--416
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 418--421
 
  []
 
@@ -815,39 +838,66 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [12]
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 447.
+Underfull \hbox (badness 10000) in paragraph at lines 463--464
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 466--469
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 466--469
+
+ []
+
+[13]
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 479.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 447.
+(Font)              size <5> substituted on input line 479.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <5.5> not available
-(Font)              size <5> substituted on input line 447.
+(Font)              size <5> substituted on input line 479.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 447.
+(Font)              size <5> substituted on input line 479.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 447.
+(Font)              size <5> substituted on input line 479.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 461--462
-[]\OT1/ppl/m/n/9 Retrived from http://jaygrossman.com/post/2013/06/10/Predictin
-g-eBay-Auction-Sales-with-Machine-
+Underfull \hbox (badness 6893) in paragraph at lines 489--490
+[]\OT1/ppl/m/n/9 Brownlee, Ja-son. \OT1/ppl/m/it/9 Fea-ture Se-lec-tion with th
+e Caret R Pack-age\OT1/ppl/m/n/9 . [][]$\OT1/cmtt/m/n/9 http : / / machinelearn
+ingmastery . com /
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 466.
-[13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 466.
- (./ProjectReport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 466.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 466.
-Package rerunfilecheck Info: File `ProjectReport.out' has not changed.
-(rerunfilecheck)             Checksum: 3F7A9C225A6025D3F43D4A92CC0AB3EF;432.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 497.
 
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[14]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 497.
+ (./ProjectReport.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 497.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 497.
+
+
+Package rerunfilecheck Warning: File `ProjectReport.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `ProjectReport.out':
+(rerunfilecheck)             Before: 5B95D93CE11589F85207EB3DE199931F;395
+(rerunfilecheck)             After:  7D02658B4EB49BA2BB2666D4B5B3A93E;386.
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.6pt have occured.
@@ -855,15 +905,18 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 7853 strings out of 493089
- 111394 string characters out of 6134842
- 217732 words of memory out of 5000000
- 11158 multiletter control sequences out of 15000+600000
+ 7861 strings out of 493089
+ 111507 string characters out of 6134842
+ 217752 words of memory out of 5000000
+ 11161 multiletter control sequences out of 15000+600000
  30810 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,9n,30p,1074b,407s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,9n,30p,1079b,407s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/t
 exlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/
@@ -879,10 +932,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2015/texmf
 ist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fon
 ts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
 1/urw/palatino/uplri8a.pfb>
-Output written on ProjectReport.pdf (13 pages, 1416061 bytes).
+Output written on ProjectReport.pdf (14 pages, 1426168 bytes).
 PDF statistics:
- 235 PDF objects out of 1000 (max. 8388607)
- 178 compressed objects within 2 object streams
- 55 named destinations out of 1000 (max. 500000)
+ 249 PDF objects out of 1000 (max. 8388607)
+ 191 compressed objects within 2 object streams
+ 60 named destinations out of 1000 (max. 500000)
  130 words of extra memory for PDF output out of 10000 (max. 10000000)
 
